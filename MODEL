@@ -1,0 +1,31 @@
+
+Locations
+    - name
+    - address1
+    - address2
+    - address3
+    - postcode
+
+Chefs
+    - 
+
+Plates
+    - name
+    - description
+
+Reviews
+    - 
+
+Comments
+    - user
+    - comment
+
+Users
+    - username
+    - name
+    - password_hash
+
+Groups
+    - name
+    - description
+
