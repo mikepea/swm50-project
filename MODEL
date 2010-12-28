@@ -6,10 +6,13 @@ Locations
     - address3
     - postcode
 
-Chefs
-    - 
+Cities
+    - name
 
-Plates
+Chefs
+    - name 
+
+Dishes
     - name
     - description
 
