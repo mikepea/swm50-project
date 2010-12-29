@@ -1,4 +1,7 @@
 class CitiesController < ApplicationController
+
+  skip_before_filter :authorize
+
   # GET /cities
   # GET /cities.xml
   def index

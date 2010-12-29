@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-    validates :name, :presence => true, :uniqueness => true
+    validates :username, :presence => true, :uniqueness => true
+    validates :name, :presence => true
     validates :password, :confirmation => true 
 
     attr_accessor :password_confirmation 
@@ -8,8 +9,8 @@ class User < ActiveRecord::Base
 
     validate :password_must_be_present 
 
-    def User.authenticate(name, password) 
-      if user = find_by_name(name)
+    def User.authenticate(username, password) 
+      if user = find_by_username(username)
         if user.hashed_password == encrypt_password(password, user.salt) 
             user
         end 
