@@ -1,4 +1,10 @@
 Rateyourroast::Application.routes.draw do
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "sessions/destroy"
+
   resources :user_rights
 
   resources :users

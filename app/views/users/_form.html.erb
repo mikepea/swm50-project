@@ -1,3 +1,5 @@
+<div class="ryr_form">
+
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -13,21 +15,23 @@
 
   <div class="field">
     <%= f.label :username %><br />
-    <%= f.text_field :username %>
+    <%= f.text_field :username, :size => 40 %>
   </div>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :size => 40 %>
   </div>
   <div class="field">
-    <%= f.label :hashed_password %><br />
-    <%= f.text_field :hashed_password %>
+    <%= f.label :password, 'Password:' %><br />
+    <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :salt %><br />
-    <%= f.text_field :salt %>
+    <%= f.label :password_confirmation, 'Confirm:' %><br />
+    <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+</div>
