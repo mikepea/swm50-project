@@ -1,9 +1,9 @@
 Rateyourroast::Application.routes.draw do
-  get "sessions/new"
-
-  get "sessions/create"
-
-  get "sessions/destroy"
+  controller :sessions do 
+      get 'login' => :new 
+      post 'login' => :create 
+      delete 'logout' => :destroy
+  end
 
   resources :user_rights
 
