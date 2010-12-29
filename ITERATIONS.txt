@@ -1,5 +1,6 @@
 
 Iteration 1
+-----------
 
 Get Rails app up and running
 
@@ -13,6 +14,7 @@ as in, I ate Dish at Location in City.
 Check all is well, 'rake test'
 
 Iteration 2
+-----------
 
 Add validation to model
     Location needs a name, should be simple
@@ -22,3 +24,9 @@ Add validation to model
 Investigate and set up unit test framework
 
 
+Iteration 3
+-----------
+
+Create search controller
+
+Create front page: find a roast, rate your roast

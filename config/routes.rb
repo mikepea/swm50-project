@@ -1,4 +1,12 @@
 Rateyourroast::Application.routes.draw do
+  resources :user_rights
+
+  resources :users
+
+  get "find/index"
+
+  get "search/index"
+
   resources :locations
 
   resources :dishes
@@ -54,7 +62,7 @@ Rateyourroast::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  root :to => "find#index"
 
   # See how all your routes lay out with "rake routes"
 

@@ -6,9 +6,30 @@
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
-<body>
+<body id="ryr">
+
+  <div id="banner">
+      <%= image_tag("logo.png") %>
+      <%= @page_title || "Rate Your Roast!" %>
+  </div>
+
+  <div id="columns">
+
+    <div id="side">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/search/">Find</a></li>
+            <li><a href="/rate/">Rate</a></li>
+            <li><a href="/login/">Log In</a></li>
+        </ul>
+    </div>
+
+    <div id="main">
 
 <%= yield %>
+
+    </div>
+  <div>
 
 </body>
 </html>
