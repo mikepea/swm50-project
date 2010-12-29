@@ -15,7 +15,7 @@ Check all is well, 'rake test'
 Iteration 2
 
 Add validation to model
-    Location needs a name
+    Location needs a name, should be simple
     City needs a name, name should be unique (or should it?!)
     Dish needs a name
 

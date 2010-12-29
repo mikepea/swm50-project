@@ -14,34 +14,47 @@ class LocationTest < ActiveSupport::TestCase
   end
 
   test "location with just text name is valid" do
-    location = Location.new(:name => "Testtown")
+    location = Location.new(:name => "Testpub")
     assert location.valid?
   end
 
-  test "location with Unicode name is valid" do
-    location = Location.new(:name => "Teßttown")
-    assert location.valid?
+  test "location with Unicode name is invalid" do
+    location = Location.new(:name => "Teßtpub")
+    assert location.invalid?
   end
 
   test "location with newlined name is invalid" do
-    location = Location.new(:name => "Testtown
+    location = Location.new(:name => "Testpub
                             Trumpton")
     assert location.invalid?
   end
 
-  test "location with ; in name is invalid" do
-    location = Location.new(:name => "Test; town")
+  test "location with really long name is invalid" do
+    location = Location.new(:name => "Really long pub name that just goes on for ever and ever and ever andever andever andever andever andever andever andever andever andever andever andever andever and ever")
     assert location.invalid?
   end
 
-  test "location with | in name is invalid" do
-    location = Location.new(:name => "Test; town")
-    assert location.invalid?
+  def new_location(name) 
+      Location.new(:name => name)
   end
 
-  test "location with < in name is invalid" do
-    location = Location.new(:name => "Test; town")
-    assert location.invalid?
+  test "location name" do 
+    ok = [   "Mypub", 
+             "Shakespeare's Head", 
+             "Tally Ho! Tavern", 
+             "The Lion and Lobster",
+             "Generic Pub 01"
+            ]
+    bad = [ "My;Pub", "My|Pub", "P<em>u</em>b", "Teßtpub" ]
+
+    ok.each do |name| 
+        assert new_location(name).valid?, "#{name} shouldn't be invalid"
+    end
+
+    bad.each do |name| 
+        assert new_location(name).invalid?, "#{name} shouldn't be valid"
+    end 
+
   end
 
 end
