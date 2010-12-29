@@ -3,6 +3,9 @@ require 'test_helper'
 class CitiesControllerTest < ActionController::TestCase
   setup do
     @city = cities(:one)
+    @update = {
+            :name => "Testtown"
+    }    
   end
 
   test "should get index" do
@@ -18,7 +21,7 @@ class CitiesControllerTest < ActionController::TestCase
 
   test "should create city" do
     assert_difference('City.count') do
-      post :create, :city => @city.attributes
+      post :create, :city => @update
     end
 
     assert_redirected_to city_path(assigns(:city))
@@ -35,7 +38,7 @@ class CitiesControllerTest < ActionController::TestCase
   end
 
   test "should update city" do
-    put :update, :id => @city.to_param, :city => @city.attributes
+    put :update, :id => @city.to_param, :city => @update
     assert_redirected_to city_path(assigns(:city))
   end
 

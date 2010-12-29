@@ -1,0 +1,24 @@
+
+Iteration 1
+
+Get Rails app up and running
+
+Get basic model in place:
+    Location (restaurant/pub)
+    City (town/city/village)
+    Dish (menu item reviewed)
+
+as in, I ate Dish at Location in City.
+
+Check all is well, 'rake test'
+
+Iteration 2
+
+Add validation to model
+    Location needs a name
+    City needs a name, name should be unique (or should it?!)
+    Dish needs a name
+
+Investigate and set up unit test framework
+
+
