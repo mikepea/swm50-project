@@ -11,7 +11,7 @@
   <div id="banner">
       <%= image_tag("logo.png") %>
       <%= @page_title || "Rate Your Roast!" %>
-      <%= @user_username || "BLAH" %>
+      <%= @display_user %>
   </div>
 
   <div id="columns">
@@ -21,7 +21,11 @@
             <li><a href="/">Home</a></li>
             <li><a href="/find/">Find</a></li>
             <li><a href="/rate/">Rate</a></li>
+<% if @display_user -%>
+            <li><a href="/logout/">Log Out</a></li>
+<% else -%>
             <li><a href="/login/">Log In</a></li>
+<% end -%>
         </ul>
     </div>
 

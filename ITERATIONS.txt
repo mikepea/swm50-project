@@ -27,6 +27,14 @@ Investigate and set up unit test framework
 Iteration 3
 -----------
 
-Create search controller
-
 Create front page: find a roast, rate your roast
+
+Add basic login/logout functionality
+
+
+Iteration 4
+-----------
+
+Add ability to add a description to a location, but must be able to back out changes.
+
+

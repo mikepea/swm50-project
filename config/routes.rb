@@ -1,5 +1,7 @@
 Rateyourroast::Application.routes.draw do
 
+  resources :location_descriptions
+
   controller :sessions do 
       get    'login' => :new 
       post   'login' => :create 
