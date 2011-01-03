@@ -1,7 +1,11 @@
 class LocationsController < ApplicationController
+
+  skip_before_filter :authorize, :only => [ :index, :show ]
+ 
   # GET /locations
   # GET /locations.xml
   def index
+
     @locations = Location.all
 
     respond_to do |format|
@@ -13,6 +17,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.xml
   def show
+
     @location = Location.find(params[:id])
 
     respond_to do |format|
