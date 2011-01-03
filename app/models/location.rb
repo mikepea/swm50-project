@@ -17,4 +17,10 @@ class Location < ActiveRecord::Base
         LocationDescription.find_last_by_location_id(self.id).description
     end
 
+    def current_description=(desc)
+        ld = LocationDescription.new(:location_id => self.id, :description => desc)
+        ld.save
+        desc
+    end
+
 end
