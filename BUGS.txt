@@ -1,0 +1,5 @@
+
+1: adding a new location does not add location_description
+    - subsequent edit of location works ok.
+
+

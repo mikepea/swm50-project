@@ -1,6 +1,8 @@
 class LocationsController < ApplicationController
 
   skip_before_filter :authorize, :only => [ :index, :show ]
+
+  uses_tiny_mce
  
   # GET /locations
   # GET /locations.xml

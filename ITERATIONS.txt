@@ -38,3 +38,16 @@ Iteration 4
 Add ability to add a description to a location, but must be able to back out changes.
 
 
+Iteration 5
+-----------
+
+Add editor control to location description update.
+
+Ensure HTML is sanitized on display.
+
+Iteration 6
+-----------
+
+
+
+

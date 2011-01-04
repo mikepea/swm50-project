@@ -27,7 +27,7 @@
 
 <p>
   <b>Description:</b>
-  <%= @location.current_description %>
+  <%= sanitize @location.current_description, :tags => %w(p strong em h3 h4 ul li) %>
 </p>
 
 
