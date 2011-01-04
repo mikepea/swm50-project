@@ -13,22 +13,26 @@ Chefs
     - name 
 
 Dishes
+    - location_id
     - name
     - description
+    - user_id
 
 Reviews
-    - 
+    - dish_id
+    - review_body
+    - user_id
 
-Comments
-    - user
-    - comment
+#Comments
+#    - user
+#    - comment
 
 Users
     - username
     - name
     - password_hash
+    - salt
 
-Groups
-    - name
-    - description
+UserRights
+    - 
 

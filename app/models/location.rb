@@ -1,6 +1,7 @@
 class Location < ActiveRecord::Base
 
     has_many :location_descriptions, :dependent => :destroy
+    has_many :dishes, :dependent => :destroy
 
     validates :name, :presence => true
     validates :name, :format => {

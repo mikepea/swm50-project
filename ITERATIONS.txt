@@ -48,6 +48,9 @@ Ensure HTML is sanitized on display.
 Iteration 6
 -----------
 
-
+Add ability to add review to pub.
+    - location can have multiple reviews
+    - review can only have one pub.
+    - Locations have many Dishes, which can have many Reviews.
 
 
