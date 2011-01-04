@@ -1,6 +1,5 @@
 Rateyourroast::Application.routes.draw do
 
-  resources :location_descriptions
 
   controller :sessions do 
       get    'login' => :new 
@@ -10,7 +9,6 @@ Rateyourroast::Application.routes.draw do
   end
 
   resources :user_rights
-
   resources :users
 
   get "find/index"
@@ -18,8 +16,9 @@ Rateyourroast::Application.routes.draw do
   get "search/index"
 
   resources :locations
-
+  resources :location_descriptions
   resources :dishes
+  resources :reviews
 
   resources :cities
 
