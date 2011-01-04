@@ -14,7 +14,13 @@ class Location < ActiveRecord::Base
     #}
 
     def current_description 
-        LocationDescription.find_last_by_location_id(self.id).description
+        ld = LocationDescription.find_last_by_location_id(self.id)
+        puts "current_description: #{self.id}\n"
+        if ld 
+            ld.description
+        else
+            ""
+        end
     end
 
     def current_description=(desc)
