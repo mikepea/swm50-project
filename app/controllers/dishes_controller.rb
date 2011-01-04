@@ -1,4 +1,9 @@
 class DishesController < ApplicationController
+
+  skip_before_filter :authorize, :only => [ :index, :show ]
+
+  uses_tiny_mce
+
   # GET /dishes
   # GET /dishes.xml
   def index

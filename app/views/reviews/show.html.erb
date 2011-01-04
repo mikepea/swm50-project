@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @review.name %>
+  <b>Dish:</b>
+  <%= @review.dish_id %>
 </p>
 
 <p>
-  <b>Description:</b>
-  <%= @review.description %>
+  <b>Review:</b>
+  <%= sanitize @review.review_body, :tags => %w(p strong em h3 h4 ul li) %>
 </p>
 
 
