@@ -1,11 +1,12 @@
-<div class="ryr_form"> 
+<div class="block">
+ <div class="ryr_form"> 
   <% if flash[:alert] %>
   <p id="notice"><%= flash[:alert] %></p> 
   <% end %>
 
   <%= form_tag do %> 
     <fieldset>
-      <legend>Please Log In</legend>
+        <h3><legend>Please Log In</legend></h3>
       <div> 
           <label for="username">Username:</label> 
           <%= text_field_tag :username, params[:username] %>
@@ -19,4 +20,5 @@
       </div> 
     </fieldset>
   <% end %> 
+ </div>
 </div>

@@ -1,4 +1,4 @@
-class FindController < ApplicationController
+class RateController < ApplicationController
 
   skip_before_filter :authorize
 

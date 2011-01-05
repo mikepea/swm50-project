@@ -1,11 +1,26 @@
 Rateyourroast::Application.routes.draw do
 
+  get "rate/index"
+
+  get "about/index"
 
   controller :sessions do 
       get    'login' => :new 
       post   'login' => :create 
       get    'logout' => :destroy
       delete 'logout' => :destroy
+  end
+
+  controller :about do 
+      get    'about' => :index 
+  end
+
+  controller :find do 
+      get    'find' => :index 
+  end
+
+  controller :rate do 
+      get    'rate' => :index 
   end
 
   resources :user_rights
@@ -71,7 +86,7 @@ Rateyourroast::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "find#index"
+  root :to => "about#index"
 
   # See how all your routes lay out with "rake routes"
 

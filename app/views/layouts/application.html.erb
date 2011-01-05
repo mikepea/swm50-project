@@ -9,39 +9,94 @@
 </head>
 <body id="ryr">
 
-  <div id="banner">
-      <!-- <%= image_tag("logo.png") %> -->
-      <%= @page_title || "Rate Your Roast!" %>
-      <%= @display_user %>
-  </div>
+ <div id="pagetop">
+     <div id="page-header">
+         <div class="col-full">
 
-  <div id="columns">
+           <div id="logo" class="fl">
+             <a href="/" title="Rate your Roast!"><img class="title" src="/images/logo.png" alt="RyR!" height="48px" width="64px"></a>
+           </div>
 
-    <div id="side">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/find/">Find</a></li>
-            <li><a href="/rate/">Rate</a></li>
-            <li><a href="/cities/">Cities</a></li>
-            <li><a href="/locations/">Pubs</a></li>
-            <li><a href="/dishes/">Dishes</a></li>
-            <li><a href="/reviews/">Reviews</a></li>
-            <li><a href="/users/">Users</a></li>
-            <li><a href="/user_rights/">UserRights</a></li>
+           <ul id="nav" class="fr">
+               <li id="menu-1" value="1"><a href="/about/">About</a></li>
+               <li id="menu-2" value="2"><a href="/find/">Find</a></li>
+               <li id="menu-3" value="3"><a href="/rate/">Rate</a></li>
 <% if @display_user -%>
-            <li><a href="/logout/">Log Out</a></li>
+               <li id="menu-4" value="4"><a href="/logout">Log Out</a></li>
 <% else -%>
-            <li><a href="/login/">Log In</a></li>
+               <li id="menu-4" value="4"><a href="/login">Log In</a></li>
 <% end -%>
-        </ul>
-    </div>
+           </ul>
 
-    <div id="main">
+       </div>
+    </div>
+ </div>
+
+  <div id="sub_nav_container"> 
+    <div class="sub_nav col-full"> 
+      <ul id="sub_nav"> 
+      </ul> 
+    </div> 
+  </div> 
+
+  <div id="content">
+    <div class="col-full"> 
+      <div class="entry"> 
+        <div class="poster_full shadow"> 
 
 <%= yield %>
 
-    </div>
-  <div>
+        </div><!-- poster_full shadow -->
+      </div><!-- entry -->
+    </div><!-- col-full -->
+  </div><!-- content -->
+
+  <div id="footer">
+   <div class="center"> 
+    <div class="footer_group" style="margin-left:30px;"> 
+               <a class="title"  href="/">Home</a> 
+       <ul> 
+           <li> 
+               <a class="footlink" href="/login">Login</a> 
+           </li> 
+           <li> 
+               <a class="footlink" href="/terms">Terms of Use</a> 
+           </li> 
+           <li> 
+              <a class="footlink" href="/privacy">Privacy Policy</a> 
+           </li> 
+        </ul> 
+    </div>   
+    <div class="footer_group"> 
+           <a class="title" href="/users">User Management</a> 
+       <ul> 
+           <li> 
+               <a class="footlink" href="/users">Users</a> 
+           </li> 
+           <li> 
+               <a class="footlink" href="/user_rights">User Rights</a> 
+           </li> 
+        </ul> 
+     </div> 
+     <div class="footer_group">   
+           <a class="title" href="/admin">Admin</a> 
+       <ul> 
+           <li> 
+               <a class="footlink" href="/cities">Cities</a> 
+           </li> 
+           <li> 
+               <a class="footlink" href="/locations">Locations</a> 
+           </li> 
+           <li> 
+               <a class="footlink" href="/dishes">Dishes</a> 
+           </li> 
+           <li> 
+               <a class="footlink" href="/reviews">Reviews</a> 
+           </li> 
+      </ul> 
+     </div>   
+   </div>
+  </div>
 
 </body>
 </html>
