@@ -1,4 +1,9 @@
 class ReviewsController < ApplicationController
+
+  skip_before_filter :authorize, :only => [ :index, :show ]
+
+  uses_tiny_mce
+
   # GET /reviews
   # GET /reviews.xml
   def index
