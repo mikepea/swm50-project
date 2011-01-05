@@ -47,8 +47,8 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.xml
   def create
-    @user = current_user
     @location = Location.new(params[:location])
+    @location.user_id = current_user.id
 
     respond_to do |format|
       if @location.save
@@ -65,6 +65,7 @@ class LocationsController < ApplicationController
   # PUT /locations/1.xml
   def update
     @location = Location.find(params[:id])
+    @location.user_id = current_user.id
 
     respond_to do |format|
       if @location.update_attributes(params[:location])

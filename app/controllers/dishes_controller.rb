@@ -46,6 +46,7 @@ class DishesController < ApplicationController
   # POST /dishes.xml
   def create
     @dish = Dish.new(params[:dish])
+    @dish.user_id = current_user.id
 
     respond_to do |format|
       if @dish.save
@@ -62,6 +63,7 @@ class DishesController < ApplicationController
   # PUT /dishes/1.xml
   def update
     @dish = Dish.find(params[:id])
+    @dish.user_id = current_user.id
 
     respond_to do |format|
       if @dish.update_attributes(params[:dish])

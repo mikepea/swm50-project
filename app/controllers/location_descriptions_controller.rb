@@ -25,6 +25,7 @@ class LocationDescriptionsController < ApplicationController
   # GET /location_descriptions/new.xml
   def new
     @location_description = LocationDescription.new
+    @location.user_id = current_user.id
 
     respond_to do |format|
       format.html # new.html.erb
