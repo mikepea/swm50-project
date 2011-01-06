@@ -35,6 +35,16 @@
   <div id="sub_nav_container"> 
     <div class="sub_nav col-full"> 
       <ul id="sub_nav"> 
+<% if @display_user -%>
+    <p>Hey <%= @display_user %>!</p>
+<% else -%>
+      <p>&nbsp;</p>
+<% end -%>
+<% if @current_locatiion -%>
+    <p>We think you are in the <%= @current_location %></p>
+<% else -%>
+      <p>LOCATION_UNKNOWN&nbsp;</p>
+<% end -%>
       </ul> 
     </div> 
   </div> 
@@ -79,7 +89,7 @@
         </ul> 
      </div> 
      <div class="footer_group">   
-           <a class="title" href="/admin">Admin</a> 
+           <a class="title" href="/locations">Content Mgmt</a> 
        <ul> 
            <li> 
                <a class="footlink" href="/cities">Cities</a> 
@@ -94,6 +104,14 @@
                <a class="footlink" href="/reviews">Reviews</a> 
            </li> 
       </ul> 
+     </div>   
+     <div class="footer_group">   
+       <a class="title" href="/admin">Admin</a> 
+       <ul> 
+           <li> 
+               <a class="footlink" href="/status">Status</a> 
+           </li> 
+       </ul>
      </div>   
    </div>
   </div>

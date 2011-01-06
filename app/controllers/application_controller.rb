@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
 
     # Where is the person? 
     def current_location
+      current_user_location.location
+    end
+ 
+    # Where is the person? 
+    def current_user_location
       UserLocation.find(session[:user_location_id])
     rescue ActiveRecord::RecordNotFound 
       user_location = UserLocation.create 
@@ -25,7 +30,8 @@ class ApplicationController < ActionController::Base
       if user
         @display_user = user.username
       else 
-        redirect_to login_url, :notice => "Please log in"
+        session[:pre_login_req_uri] = request.env['REQUEST_URI'] 
+        redirect_to login_url, :notice => "You need to log in to access this page."
       end 
     end
 

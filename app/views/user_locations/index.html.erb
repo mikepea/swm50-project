@@ -1,23 +1,12 @@
-<h1>Listing user_locations</h1>
+<h1>Your current location</h1>
 
-<table>
-  <tr>
-    <th>Location</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @user_locations.each do |user_location| %>
-  <tr>
-    <td><%= user_location.location_id %></td>
-    <td><%= link_to 'Show', user_location %></td>
-    <td><%= link_to 'Edit', edit_user_location_path(user_location) %></td>
-    <td><%= link_to 'Destroy', user_location, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<p>
+<% if session[:user_location] -%>
+    We think you are at <%= Location.find(session[:user_location]).name -%>
+<% else -%>
+    We've got no idea where you are. Why not <%= link_to 'select a pub', locations_path %>
+<% end -%>
+</p>
 
 <br />
 
-<%= link_to 'New User location', new_user_location_path %>

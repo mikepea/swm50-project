@@ -1,6 +1,7 @@
 Rateyourroast::Application.routes.draw do
 
-  resources :user_locations
+  get "status/index"
+
 
   get "rate/index"
 
@@ -17,6 +18,10 @@ Rateyourroast::Application.routes.draw do
       get    'about' => :index 
   end
 
+  controller :status do 
+      get    'status' => :index 
+  end
+
   controller :find do 
       get    'find' => :index 
   end
@@ -25,6 +30,12 @@ Rateyourroast::Application.routes.draw do
       get    'rate' => :index 
   end
 
+  controller :user_locations do 
+      get     'user_locations' => :index
+      post    'user_locations' => :create 
+  end
+
+  #resources :user_locations
   resources :user_rights
   resources :users
 

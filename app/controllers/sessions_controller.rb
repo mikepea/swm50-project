@@ -8,7 +8,12 @@ class SessionsController < ApplicationController
   def create
       if user = User.authenticate(params[:username], params[:password])
           session[:user_id] = user.id
-          redirect_to users_url
+          dest = session[:pre_login_req_uri]
+          if dest
+            redirect_to dest
+          else
+            redirect_to users_url
+          end
       else
           redirect_to login_url, :alert => "Invalid user/password combination"
       end

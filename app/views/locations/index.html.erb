@@ -22,6 +22,7 @@
     <td><%= link_to 'Show', location %></td>
     <td><%= link_to 'Edit', edit_location_path(location) %></td>
     <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Set as my current location', user_locations_path(:user_location => location) %>
   </tr>
 <% end %>
 </table>
