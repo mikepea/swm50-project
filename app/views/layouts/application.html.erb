@@ -21,7 +21,7 @@
                <li id="menu-1" value="1"><a href="/about/">About</a></li>
                <li id="menu-2" value="2"><a href="/find/">Find</a></li>
                <li id="menu-3" value="3"><a href="/rate/">Rate</a></li>
-<% if @display_user -%>
+<% if @current_user -%>
                <li id="menu-4" value="4"><a href="/logout">Log Out</a></li>
 <% else -%>
                <li id="menu-4" value="4"><a href="/login">Log In</a></li>
@@ -35,15 +35,22 @@
   <div id="sub_nav_container"> 
     <div class="sub_nav col-full"> 
       <ul id="sub_nav"> 
-<% if @display_user -%>
-    <p>Hey <%= @display_user %>!</p>
+<% if @current_user -%>
+    <p id='user_select' class="fl">
+    Hey <%= link_to "#{@display_user}", user_path(@current_user) %>! <%= link_to '(not you?)', logout_path %>
+    </p>
 <% else -%>
-      <p>&nbsp;</p>
+    <p id='user_select' class="fl">
+    </p>
 <% end -%>
-<% if @current_locatiion -%>
-    <p>We think you are in the <%= @current_location %></p>
+<% if @current_location -%>
+    <p id="pub_select" class="fr">
+    Are you in '<%= link_to "#{@display_location}", location_path(@current_location) %>'? If not, <%= link_to 'which one are you in?', locations_path %>
+    </p>
 <% else -%>
-      <p>LOCATION_UNKNOWN&nbsp;</p>
+    <p id="pub_select" class="fr">
+    <%= link_to 'which pub are you in?', locations_path -%>
+    </p>
 <% end -%>
       </ul> 
     </div> 

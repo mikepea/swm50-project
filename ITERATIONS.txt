@@ -65,3 +65,11 @@ Set up method for user to set their 'current location' - the pub that they are i
     - key UX for later adding a rating
 
 
+Iteration 9
+-----------
+
+More navigation fixes
+    - add display of user and location in menu bar
+    - add terms and privacy controllers
+    - 
+

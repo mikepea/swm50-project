@@ -1,5 +1,7 @@
 Rateyourroast::Application.routes.draw do
 
+  get "terms/index"
+
   get "status/index"
 
 

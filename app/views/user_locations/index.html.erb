@@ -1,8 +1,9 @@
 <h1>Your current location</h1>
 
 <p>
-<% if session[:user_location] -%>
-    We think you are at <%= Location.find(session[:user_location]).name -%>
+<% if @current_location -%>
+    We think you are at <%= @display_location -%>. 
+    Is this correct? If not, <%= link_to 'select a new one', locations_path %>
 <% else -%>
     We've got no idea where you are. Why not <%= link_to 'select a pub', locations_path %>
 <% end -%>
