@@ -1,16 +1,5 @@
 Rateyourroast::Application.routes.draw do
 
-  get "privacy/index"
-
-  get "terms/index"
-
-  get "status/index"
-
-
-  get "rate/index"
-
-  get "about/index"
-
   controller :sessions do 
       get    'login' => :new 
       post   'login' => :create 
@@ -20,6 +9,14 @@ Rateyourroast::Application.routes.draw do
 
   controller :about do 
       get    'about' => :index 
+  end
+
+  controller :terms do 
+      get    'terms' => :index 
+  end
+
+  controller :privacy do 
+      get    'privacy' => :index 
   end
 
   controller :status do 
