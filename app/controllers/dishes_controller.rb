@@ -7,7 +7,20 @@ class DishesController < ApplicationController
   # GET /dishes
   # GET /dishes.xml
   def index
-    @dishes = Dish.all
+
+    if params[:location]
+        @dishes_location = Location.find(params[:location])
+    else
+        @dishes_location = @current_location
+    end
+    logger.info "dishes_location: " + @dishes_location.inspect
+
+    if @dishes_location
+        @dishes = Dish.find_all_by_location_id(@dishes_location) || Array.new
+        logger.info "dishes: " + @dishes.inspect
+    else
+        @dishes = Dish.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

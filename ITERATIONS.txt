@@ -71,5 +71,12 @@ Iteration 9
 More navigation fixes
     - add display of user and location in menu bar
     - add terms and privacy controllers
-    - 
+
+Iteration 10
+------------
+
+Set up review process.
+    - select/add location
+    - select/add dish
+    - write review
 

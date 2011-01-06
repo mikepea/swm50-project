@@ -1,4 +1,10 @@
-<h1>Listing dishes</h1>
+
+<% if @dishes_location -%>
+<h1>Listing dishes for <%= @dishes_location.name -%></h1>
+<% else -%>
+<h1>Listing all dishes for all pubs</h1>
+<p>(hint: <%= link_to 'you might want to select which pub you are interested in', locations_path -%></p>
+<% end -%>
 
 <table>
   <tr>
@@ -11,8 +17,8 @@
 
 <% @dishes.each do |dish| %>
   <tr>
+    <td><%= dish.location.name %></td>
     <td><%= dish.name %></td>
-    <td><%= dish.description %></td>
     <td><%= link_to 'Show', dish %></td>
     <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
     <td><%= link_to 'Destroy', dish, :confirm => 'Are you sure?', :method => :delete %></td>
