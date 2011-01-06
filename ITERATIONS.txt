@@ -53,4 +53,15 @@ Add ability to add review to pub.
     - review can only have one pub.
     - Locations have many Dishes, which can have many Reviews.
 
+Iteration 7
+-----------
+
+Tidy up layout, provide basic navigation: find pub, rate pub.
+
+Iteration 8
+-----------
+
+Set up method for user to set their 'current location' - the pub that they are in.
+    - key UX for later adding a rating
+
 
