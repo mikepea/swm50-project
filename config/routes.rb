@@ -1,5 +1,7 @@
 Rateyourroast::Application.routes.draw do
 
+  get "privacy/index"
+
   get "terms/index"
 
   get "status/index"
