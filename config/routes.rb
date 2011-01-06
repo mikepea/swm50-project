@@ -1,5 +1,7 @@
 Rateyourroast::Application.routes.draw do
 
+  resources :user_locations
+
   get "rate/index"
 
   get "about/index"
