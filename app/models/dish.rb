@@ -2,6 +2,7 @@ class Dish < ActiveRecord::Base
 
     has_many :reviews, :dependent => :destroy
     belongs_to :location
+    belongs_to :user
 
     validates :location_id, :presence => true, :numericality => { :only_integer => true }
     validates :name, :presence => true

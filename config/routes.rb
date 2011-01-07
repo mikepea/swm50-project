@@ -5,6 +5,8 @@ Rateyourroast::Application.routes.draw do
       post   'login' => :create 
       get    'logout' => :destroy
       delete 'logout' => :destroy
+      get    'reset' => :reset_selection
+      delete 'reset' => :reset_selection
   end
 
   controller :about do 

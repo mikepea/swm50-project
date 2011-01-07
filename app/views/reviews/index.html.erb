@@ -7,6 +7,7 @@
 
 <table>
   <tr>
+    <th>User</th>
     <th>Review text</th>
     <th></th>
     <th></th>
@@ -15,7 +16,8 @@
 
 <% @reviews.each do |review| %>
   <tr>
-    <td><%= review.review_body %></td>
+    <td><%= link_to "#{review.user.name}", user_path(review.user) -%></td>
+    <td><%= sanitize review.review_body %></td>
     <td><%= link_to 'Show', review %></td>
     <td><%= link_to 'Edit', edit_review_path(review) %></td>
     <td><%= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -25,4 +27,4 @@
 
 <br />
 
-<%= link_to 'New Review', new_review_path %>
+<%= link_to 'New Review', new_review_path(:dish_id => @dish) %>

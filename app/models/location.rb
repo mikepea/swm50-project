@@ -4,6 +4,8 @@ class Location < ActiveRecord::Base
     has_many :dishes, :dependent => :destroy
     has_many :user_locations, :dependent => :destroy
 
+    belongs_to :user
+
     validates :name, :presence => true
     validates :name, :format => {
         :with   => %r{\A[-a-zA-Z0-9 \!\']+\z}, 

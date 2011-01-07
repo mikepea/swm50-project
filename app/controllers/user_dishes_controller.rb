@@ -10,7 +10,7 @@ class UserDishesController < ApplicationController
     respond_to do |format|
       if dish
         session[:user_dish] = params[:user_dish]
-        #dish = Dish.find(session[:user_dish])
+        session[:user_location] = dish.location_id
         format.html { redirect_to(dish, :notice => 'Your current dish was successfully set.') }
         #format.xml  { render :xml => @user_dish, :status => :created, :location => @user_dish }
       else

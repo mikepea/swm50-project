@@ -19,6 +19,12 @@ class SessionsController < ApplicationController
       end
   end
 
+  def reset_selection
+      session[:user_location] = nil 
+      session[:user_dish] = nil 
+      redirect_to locations_url, :notice => "Session Reset"
+  end
+
   def destroy
       session[:user_id] = nil 
       redirect_to locations_url, :notice => "Logged out"

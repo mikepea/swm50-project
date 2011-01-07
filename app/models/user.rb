@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
     validates :name, :presence => true
     validates :password, :confirmation => true 
 
+    has_many :reviews
+    has_many :dishes
+    has_many :locations
+
+
     attr_accessor :password_confirmation 
     attr_reader :password
 

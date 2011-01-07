@@ -19,7 +19,7 @@ class UserLocationsController < ApplicationController
     respond_to do |format|
       if location
         session[:user_location] = params[:user_location]
-        location = Location.find(session[:user_location])
+        session[:user_dish] = nil
         format.html { redirect_to(location, :notice => 'Your current location was successfully set.') }
         #format.xml  { render :xml => @user_location, :status => :created, :location => @user_location }
       else

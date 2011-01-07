@@ -2,19 +2,23 @@
 
 <p>
   <b>User:</b>
-  <%= @review.user_id %>
+  <%= link_to "#{@review.user.name}", user_path(@review.user) -%>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= link_to "#{@review.dish.location.name}", location_path(@review.dish.location) -%>
 </p>
 
 <p>
   <b>Dish:</b>
-  <%= @review.dish_id %>
+  <%= link_to "#{@review.dish.name}", location_path(@review.dish) -%>
 </p>
 
 <p>
   <b>Review:</b>
   <%= sanitize @review.review_body, :tags => %w(p strong em h3 h4 ul li) %>
 </p>
-
 
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>

@@ -15,10 +15,9 @@
   <%= sanitize @dish.description, :tags => %w(p strong em h3 h4 ul li) %>
 </p>
 
-
 <%= link_to 'Edit', edit_dish_path(@dish) %> |
 <%= link_to 'Back', dishes_path %> |
 <%= link_to 'Reviews', reviews_path(:dish_id => @dish) %>
-<% unless @dish.id  == @current_dish.id -%>
-<%= button_to 'Set this as my current dish', user_dishes_path(:dish_id => @dish) %>
+<% unless @current_dish and @dish.id == @current_dish.id -%>
+<%= button_to 'Set this as my current dish', user_dishes_path(:user_dish => @dish) %>
 <% end -%>

@@ -4,5 +4,6 @@ class Review < ActiveRecord::Base
     validates :dish_id, :presence => true, :numericality => { :only_integer => true }
 
     belongs_to :dish
+    belongs_to :user
 
 end

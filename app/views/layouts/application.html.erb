@@ -45,7 +45,7 @@
 <% if @current_location -%>
     <p id="pub_select" class="fr">
 Are you in <%= link_to "#{@display_location}", location_path(@current_location) %><%   if @current_dish -%>, eating <%= link_to "#{@display_dish}", dish_path(@current_dish) -%><%   end -%>?
-    If not, <%= link_to 'which pub are you in?', locations_path %>
+    If not, <%= link_to 'reset and start again', reset_path %>
     </p>
 <% else -%>
     <p id="pub_select" class="fr">
