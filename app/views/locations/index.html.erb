@@ -19,6 +19,7 @@
     <td><%= location.address2 %></td>
     <td><%= location.address3 %></td>
     <td><%= location.postcode %></td>
+    <td><%= link_to 'Dishes', dishes_path(:location_id => location) %></td>
     <td><%= link_to 'Show', location %></td>
     <td><%= link_to 'Edit', edit_location_path(location) %></td>
     <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>

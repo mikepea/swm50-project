@@ -1,9 +1,13 @@
-<h1>Listing reviews</h1>
+<% if @dish -%>
+<h1>Listing reviews for <%= @dish.name -%> at <%= @dish.location.name -%></h1>
+<% else -%>
+<h1>Listing all reviews for all pubs</h1>
+<p>(hint: <%= link_to 'you might want to select which pub and dish you are interested in', locations_path -%></p>
+<% end -%>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Description</th>
+    <th>Review text</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,8 +15,7 @@
 
 <% @reviews.each do |review| %>
   <tr>
-    <td><%= review.name %></td>
-    <td><%= review.description %></td>
+    <td><%= review.review_body %></td>
     <td><%= link_to 'Show', review %></td>
     <td><%= link_to 'Edit', edit_review_path(review) %></td>
     <td><%= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -23,7 +23,7 @@
     <td><%= dish.location.name %></td>
 <%   end -%>
     <td><%= dish.name %></td>
-    <td><%= link_to 'Review', new_review_path(:dish_id => dish) %></td>
+    <td><%= link_to 'Reviews', reviews_path(:dish_id => dish) %></td>
     <td><%= link_to 'Show', dish %></td>
     <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
     <td><%= link_to 'Destroy', dish, :confirm => 'Are you sure?', :method => :delete %></td>

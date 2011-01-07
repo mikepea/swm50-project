@@ -37,7 +37,8 @@
 
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<%= link_to 'Back', locations_path %> |
+<%= link_to 'Dishes', dishes_path(:location_id => @location) %>
 <% unless @location.id  == @current_location.id -%>
 <%= button_to 'Set this as my current location', user_locations_path(:location_id => @location) %>
 <% end -%>
