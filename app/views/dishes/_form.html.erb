@@ -11,10 +11,16 @@
     </div>
   <% end %>
 
+<% if @location -%>
+  <div class="field">
+    <%= hidden_field :dish, :location_id %>
+  </div>
+<% else -%>
   <div class="field">
     <%= f.label :location_id %><br />
     <%= f.text_field :location_id %>
   </div>
+<% end -%>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

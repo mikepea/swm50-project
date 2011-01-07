@@ -9,14 +9,13 @@ class DishesController < ApplicationController
   def index
 
     if params[:location]
-        @dishes_location = Location.find(params[:location])
+        @location = Location.find(params[:location])
     else
-        @dishes_location = @current_location
+        @location = @current_location
     end
-    logger.info "dishes_location: " + @dishes_location.inspect
 
-    if @dishes_location
-        @dishes = Dish.find_all_by_location_id(@dishes_location) || Array.new
+    if @location
+        @dishes = Dish.find_all_by_location_id(@location) || Array.new
         logger.info "dishes: " + @dishes.inspect
     else
         @dishes = Dish.all
@@ -43,6 +42,13 @@ class DishesController < ApplicationController
   # GET /dishes/new.xml
   def new
     @dish = Dish.new
+    logger.info "dishes#new params: " + params.inspect
+    if params[:location_id]
+        @location = Location.find(params[:location_id])
+    else
+        @location = @current_location
+    end
+    @dish.location_id = @location.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -59,7 +65,7 @@ class DishesController < ApplicationController
   # POST /dishes.xml
   def create
     @dish = Dish.new(params[:dish])
-    @dish.user_id = current_user.id
+    @dish.user_id = @current_user.id
 
     respond_to do |format|
       if @dish.save
