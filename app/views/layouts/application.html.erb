@@ -32,8 +32,8 @@
     </div>
  </div>
 
-  <div id="sub_nav_container"> 
-    <div class="sub_nav col-full"> 
+  <div id="sub_nav_container">
+    <div class="sub_nav col-full">
 <% if @current_user -%>
     <p id='user_select' class="fl">
     Hey <%= link_to "#{@display_user}", user_path(@current_user) %>! <%= link_to '(not you?)', logout_path %>
@@ -44,7 +44,8 @@
 <% end -%>
 <% if @current_location -%>
     <p id="pub_select" class="fr">
-    Are you in '<%= link_to "#{@display_location}", location_path(@current_location) %>'? If not, <%= link_to 'which one are you in?', locations_path %>
+Are you in <%= link_to "#{@display_location}", location_path(@current_location) %><%   if @current_dish -%>, eating <%= link_to "#{@display_dish}", dish_path(@current_dish) -%><%   end -%>?
+    If not, <%= link_to 'which pub are you in?', locations_path %>
     </p>
 <% else -%>
     <p id="pub_select" class="fr">

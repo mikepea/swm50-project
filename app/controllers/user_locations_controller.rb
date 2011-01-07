@@ -1,6 +1,6 @@
 class UserLocationsController < ApplicationController
 
-  skip_before_filter :authorize, :only => [ :create, :update ]
+  skip_before_filter :authorize, :only => [ :create ]
 
   # GET /user_locations
   # GET /user_locations.xml

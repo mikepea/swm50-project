@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :current_user
   before_filter :current_location
+  before_filter :current_dish
   before_filter :authorize
 
   protect_from_forgery
@@ -21,6 +22,14 @@ class ApplicationController < ActionController::Base
       if session[:user_location]
         @current_location = Location.find(session[:user_location])
         @display_location = @current_location.name
+      end
+    end
+
+    # What do they intend to eat/review?
+    def current_dish
+      if session[:user_dish]
+        @current_dish = Dish.find(session[:user_dish])
+        @display_dish = @current_dish.name
       end
     end
 

@@ -7,7 +7,19 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.xml
   def index
-    @reviews = Review.all
+
+    if params[:dish_id]
+        @dish = Dish.find(params[:dish_id])
+    else
+        @dish = @current_dish
+    end
+
+    if @dish
+        @reviews = Review.find_all_by_dish_id(@dish) || Array.new
+        logger.info "reviews: " + @reviews.inspect
+    else
+        @reviews = Review.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,6 +42,13 @@ class ReviewsController < ApplicationController
   # GET /reviews/new.xml
   def new
     @review = Review.new
+    logger.info "review.new params: " + params.inspect
+    if params[:dish_id]
+        @dish = Dish.find(params[:dish_id])
+    else
+        @dish = @current_dish
+    end
+    @review.dish_id = @dish.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,7 +65,7 @@ class ReviewsController < ApplicationController
   # POST /reviews.xml
   def create
     @review = Review.new(params[:review])
-    @review.user_id = current_user.id
+    @review.user_id = @current_user.id
 
     respond_to do |format|
       if @review.save
@@ -63,7 +82,7 @@ class ReviewsController < ApplicationController
   # PUT /reviews/1.xml
   def update
     @review = Review.find(params[:id])
-    @review.user_id = current_user.id
+    @review.user_id = @current_user.id
 
     respond_to do |format|
       if @review.update_attributes(params[:review])

@@ -8,8 +8,8 @@ class DishesController < ApplicationController
   # GET /dishes.xml
   def index
 
-    if params[:location]
-        @location = Location.find(params[:location])
+    if params[:location_id]
+        @location = Location.find(params[:location_id])
     else
         @location = @current_location
     end

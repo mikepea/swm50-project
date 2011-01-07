@@ -36,6 +36,10 @@ Rateyourroast::Application.routes.draw do
       post    'user_locations' => :create 
   end
 
+  controller :user_dishes do 
+      post    'user_dishes' => :create 
+  end
+
   #resources :user_locations
   resources :user_rights
   resources :users

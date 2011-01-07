@@ -27,6 +27,7 @@
     <td><%= link_to 'Show', dish %></td>
     <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
     <td><%= link_to 'Destroy', dish, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Set as my current dish', user_dishes_path(:user_dish => dish) %>
   </tr>
 <% end %>
 </table>
