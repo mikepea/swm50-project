@@ -34,7 +34,6 @@
 
   <div id="sub_nav_container"> 
     <div class="sub_nav col-full"> 
-      <ul id="sub_nav"> 
 <% if @current_user -%>
     <p id='user_select' class="fl">
     Hey <%= link_to "#{@display_user}", user_path(@current_user) %>! <%= link_to '(not you?)', logout_path %>
@@ -52,7 +51,6 @@
     <%= link_to 'which pub are you in?', locations_path -%>
     </p>
 <% end -%>
-      </ul> 
     </div> 
   </div> 
 
