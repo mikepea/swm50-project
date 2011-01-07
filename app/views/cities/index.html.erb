@@ -11,9 +11,11 @@
 <% @cities.each do |city| %>
   <tr>
     <td><%= city.name %></td>
+    <td><%= link_to 'Pubs', locations_path(:city_id => city) %></td>
     <td><%= link_to 'Show', city %></td>
     <td><%= link_to 'Edit', edit_city_path(city) %></td>
     <td><%= link_to 'Destroy', city, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Set as my current city', user_cities_path(:user_city => city) %>
   </tr>
 <% end %>
 </table>

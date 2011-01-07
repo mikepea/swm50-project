@@ -44,6 +44,7 @@ class CitiesController < ApplicationController
   # POST /cities.xml
   def create
     @city = City.new(params[:city])
+    @city.user_id = @current_user.id
 
     respond_to do |format|
       if @city.save
@@ -60,6 +61,7 @@ class CitiesController < ApplicationController
   # PUT /cities/1.xml
   def update
     @city = City.find(params[:id])
+    @city.user_id = @current_user.id
 
     respond_to do |format|
       if @city.update_attributes(params[:city])

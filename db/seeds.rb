@@ -7,18 +7,20 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 Dish.delete_all 
 Location.delete_all 
+LocationDescription.delete_all 
 City.delete_all 
+User.delete_all 
+Review.delete_all 
 
-City.create(:name => 'Brighton')
-Location.create(:name => 'The Hampton', :postcode => 'BN1 3XX')
-Location.create(:name => 'The Windmill', :postcode => 'BN1 3XY')
-Dish.create(:name => 'Lamb Roast',
-            :description => %{<p>
-<p>Well cooked lamb, with: </p>
-<ul> 
-<li>3 Roast Potatoes</li> 
-<li>Cauliflower Cheese</li> 
-<li>Nice veg mix</li> 
-</ul> 
-<p>Well presented with a selection of condiments</p>
-})
+user = User.create(:username => "admin", :name => "Admin", :password => "erowngewiub", :password_confirmation => "erowngewiub" )
+
+city = City.create(:name => 'Brighton', :user_id => user.id )
+city = City.create(:name => 'Hove', :user_id => user.id )
+city = City.create(:name => 'Shoreham', :user_id => user.id )
+city = City.create(:name => 'Falmer', :user_id => user.id )
+city = City.create(:name => 'Rottingdean', :user_id => user.id )
+city = City.create(:name => 'Woodingdean', :user_id => user.id )
+city = City.create(:name => 'Patcham', :user_id => user.id )
+city = City.create(:name => 'Worthing', :user_id => user.id )
+
+Location.create(:name => 'The Hampton', :postcode => 'BN1 3XX', :city_id => city, :user_id => user)

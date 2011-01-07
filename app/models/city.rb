@@ -1,4 +1,8 @@
 class City < ActiveRecord::Base
+
+    has_many :locations
+
+    validates :user_id, :presence => true, :numericality => { :only_integer => true }
     validates :name, :presence => true
     validates :name, :uniqueness => true
     validates :name, :format => {

@@ -1,7 +1,15 @@
-<h1>Listing locations</h1>
+<% if @city -%>
+<h1>Pubs in <%= @city.name -%></h1>
+<% else -%>
+<h1>Here are all pubs we know about.</h1>
+<p>(hint: <%= link_to 'you might want to select which place you are interested in', cities_path -%>)</p>
+<% end -%>
 
 <table>
   <tr>
+<% unless @city -%>
+    <th>City Name</th>
+<% end -%>
     <th>Name</th>
     <th>Address1</th>
     <th>Address2</th>
@@ -14,6 +22,9 @@
 
 <% @locations.each do |location| %>
   <tr>
+<%   unless @city -%>
+    <td><%= location.city.name %></td>
+<%   end -%>
     <td><%= location.name %></td>
     <td><%= location.address1 %></td>
     <td><%= location.address2 %></td>

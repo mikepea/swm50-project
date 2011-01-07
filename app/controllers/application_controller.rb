@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
   before_filter :current_user
+  before_filter :current_city
   before_filter :current_location
   before_filter :current_dish
   before_filter :authorize
@@ -14,6 +15,14 @@ class ApplicationController < ActionController::Base
       if session[:user_id]
         @current_user = User.find(session[:user_id])
         @display_user = @current_user.name
+      end
+    end
+
+    # Where is the person?
+    def current_city
+      if session[:user_city]
+        @current_city = City.find(session[:user_city])
+        @display_city = @current_city.name
       end
     end
 

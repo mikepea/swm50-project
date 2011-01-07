@@ -86,4 +86,24 @@ Iteration 11
 Allow new user registrations
     - simple for now
 
+Iteration 12
+------------
+
+Add selection of city
+
+Iteration 13
+------------
+
+Configure finer grained user authentication
+    - levels of users, or group permissions?
+    - levels required:
+        - full admin: delete content, delete users, list all content, ...
+        - edit any pub
+        - edit cities
+        - add pub
+        - add city
+        - add dish
+        - add/edit other users
+        - edit pub/city/dish
+
 

@@ -1,5 +1,7 @@
 Rateyourroast::Application.routes.draw do
 
+  get "user_cities/create"
+
   controller :sessions do 
       get    'login' => :new 
       post   'login' => :create 
@@ -33,8 +35,11 @@ Rateyourroast::Application.routes.draw do
       get    'rate' => :index 
   end
 
+  controller :user_cities do 
+      post    'user_cities' => :create 
+  end
+
   controller :user_locations do 
-      get     'user_locations' => :index
       post    'user_locations' => :create 
   end
 

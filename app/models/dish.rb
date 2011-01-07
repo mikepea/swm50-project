@@ -4,6 +4,7 @@ class Dish < ActiveRecord::Base
     belongs_to :location
     belongs_to :user
 
+    validates :user_id, :presence => true, :numericality => { :only_integer => true }
     validates :location_id, :presence => true, :numericality => { :only_integer => true }
     validates :name, :presence => true
     validates :name, :format => {

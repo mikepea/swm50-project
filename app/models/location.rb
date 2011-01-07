@@ -2,10 +2,12 @@ class Location < ActiveRecord::Base
 
     has_many :location_descriptions, :dependent => :destroy
     has_many :dishes, :dependent => :destroy
-    has_many :user_locations, :dependent => :destroy
 
     belongs_to :user
+    belongs_to :city
 
+    validates :user_id, :presence => true, :numericality => { :only_integer => true }
+    validates :city_id, :presence => true, :numericality => { :only_integer => true }
     validates :name, :presence => true
     validates :name, :format => {
         :with   => %r{\A[-a-zA-Z0-9 \!\']+\z}, 

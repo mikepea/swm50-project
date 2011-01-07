@@ -11,6 +11,16 @@
     </div>
   <% end %>
 
+<% if @city -%>
+  <div class="field">
+    <%= hidden_field :location, :city_id %>
+  </div>
+<% else -%>
+  <div class="field">
+    <%= f.label :city_id %><br />
+    <%= f.text_field :city_id %>
+  </div>
+<% end -%>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

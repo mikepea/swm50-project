@@ -8,12 +8,24 @@ class LocationsController < ApplicationController
   # GET /locations.xml
   def index
 
-    @locations = Location.all
+    if params[:city_id]
+        @city = City.find(params[:city_id])
+    else
+        @city = @current_city
+    end
+
+    if @city
+        @locations = Location.find_all_by_city_id(@city) || Array.new
+        logger.info "locations: " + @locations.inspect
+    else
+        @locations = Location.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @locations }
     end
+
   end
 
   # GET /locations/1
@@ -32,10 +44,17 @@ class LocationsController < ApplicationController
   # GET /locations/new.xml
   def new
     @location = Location.new
+    logger.info "location.new params: " + params.inspect
+    if params[:city_id]
+        @city = City.find(params[:city_id])
+    else
+        @city = @current_city
+    end
+    @location.city_id = @city.id
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @location }
+      format.xml  { render :xml => @review }
     end
   end
 

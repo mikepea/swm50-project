@@ -1,2 +1,16 @@
 <h3>Hungry eh?</h3>
-<p>Here's <%= link_to 'the list of pubs we know about', locations_path -%></p>
+<% if @current_city -%>
+    <p>
+    Here's <%= link_to "the list of pubs we know about in #{@display_city}", locations_path(:city_id => @current_city) -%>
+    </p>
+    <p>
+      If you aren't interested in pubs in <%= @display_city -%>, 
+      you should probably <%= link_to "tell us where you are instead", cities_path -%>. 
+    </p>
+<% else -%>
+    <p>
+    We don't yet know which town/city you're interested in, 
+    so it's probably best you <%= link_to "pick a place first", cities_path -%>. 
+    Then we can give you a list of pubs that are in that area.
+</p>
+<% end -%>
