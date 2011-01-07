@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
           if dest
             redirect_to dest
           else
-            redirect_to users_url
+            redirect_to root_url
           end
       else
           redirect_to login_url, :alert => "Invalid user/password combination"

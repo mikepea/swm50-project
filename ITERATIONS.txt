@@ -80,3 +80,10 @@ Set up review process.
     - select/add dish
     - write review
 
+Iteration 11
+------------
+
+Allow new user registrations
+    - simple for now
+
+

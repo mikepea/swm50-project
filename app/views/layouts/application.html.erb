@@ -40,6 +40,7 @@
     </p>
 <% else -%>
     <p id='user_select' class="fl">
+    <%= link_to "Login", login_path %> or <%= link_to "register", new_user_path -%> to add new content, otherwise browse away!
     </p>
 <% end -%>
 <% if @current_location -%>

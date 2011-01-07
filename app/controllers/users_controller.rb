@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  skip_before_filter :authorize, :only => [ :new, :create ]
+
   # GET /users
   # GET /users.xml
   def index
@@ -44,8 +47,15 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(users_url, :notice => "User #{@user.name} was successfully created.") }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
+        if @current_user 
+          # we're an admin user creating the account
+          format.html { redirect_to(users_url, :notice => "User #{@user.name} was successfully created.") }
+          format.xml  { render :xml => @user, :status => :created, :location => @user }
+        else 
+          # we've just registered
+          format.html { redirect_to(login_url, :notice => "Your account has been created, please log in") }
+          format.xml  { render :xml => @user, :status => :created, :location => @user }
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
