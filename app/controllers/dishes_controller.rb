@@ -82,7 +82,7 @@ class DishesController < ApplicationController
   # PUT /dishes/1.xml
   def update
     @dish = Dish.find(params[:id])
-    @dish.user_id = current_user.id
+    @dish.user_id = @current_user.id
 
     respond_to do |format|
       if @dish.update_attributes(params[:dish])
