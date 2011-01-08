@@ -94,16 +94,24 @@ Add selection of city
 Iteration 13
 ------------
 
-Configure finer grained user authentication
-    - levels of users, or group permissions?
-    - levels required:
-        - full admin: delete content, delete users, list all content, ...
-        - edit any pub
-        - edit cities
-        - add pub
-        - add city
-        - add dish
-        - add/edit other users
-        - edit pub/city/dish
+Configure finer grained user authorization
+    - currently, we just have 'anon' (logged out) and 'user' (logged in)
+    - simplest multi-level auth scheme would be escalating levels
+        - as in, a many-1 mapping between User and Role models
+        - eg 'admin' > 'city_moderator' > 'location_moderator' > 'dish_moderator' > 'review_moderator' > 'user'
+          - for example
+    - alternatively, can have a many-many relationship between users and roles
+        - so user can be a city_moderator AND a pub_moderator
+    - we also want 'general users' to be able to add new content, and edit content that they have added.
+        - otherwise, we have to populate the database ourselves!
+    - go for SIMPLE for now - escalating roles
+        - for now, encode into methods in User model:
+            user.is_admin
+            user.is_full_moderator (includes is_admin users)
+            user.is_location_moderator (includes is_location_moderator users)
+            user.is_dish_moderator (...)
+            user.is_review_moderator (...)
+
+
 
 

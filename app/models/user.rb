@@ -1,18 +1,86 @@
 class User < ActiveRecord::Base
 
-    validates :username, :presence => true, :uniqueness => true
-    validates :name, :presence => true
-    validates :password, :confirmation => true 
-
     has_many :reviews
     has_many :dishes
     has_many :locations
 
+    belongs_to :role
+
+    validates :username, :presence => true, :uniqueness => true
+    validates :name, :presence => true
+    validates :email, :presence => true
+    validates :password, :confirmation => true 
+    validates :role_id, :presence => true, :numericality => { :only_integer => true }
+
+    validates :name, :format => {
+        :with   => %r{\A[-a-zA-Z0-9 \']+\z}, 
+        :message => 'can only contain a-z, 0-9, space and -, \''
+    }
+
+    validates :email, 
+        :uniqueness => true
+        #:message => "is already in use, please use another"
+
+    validates :email,
+        :length => { :minimum => 5, :maximum => 254 }
+        #:message => 'must be between 5 and 254 characters long'
+
+    #validates :email,
+    #    :format => {
+    #       :with   => %r{^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$}i
+    #    },
+    #    :message => 'must be a valid email address'
 
     attr_accessor :password_confirmation 
     attr_reader :password
 
     validate :password_must_be_present 
+
+    def is_admin?
+      [ 'admin' ].include?(self.role.name) ? true : false
+    end
+
+    def is_full_moderator?
+      [ 'admin', 
+          'full_moderator' ].include?(self.role.name) ? true : false
+    end
+
+    def is_city_moderator?
+      [ 'admin', 
+          'full_moderator', 
+          'city_moderator' ].include?(self.role.name) ? true : false
+    end
+
+    def is_location_moderator?
+      [ 'admin', 
+          'full_moderator', 
+          'city_moderator' , 
+          'location_moderator' ].include?(self.role.name) ? true : false
+    end
+
+    def is_dish_moderator?
+      [ 'admin', 
+          'full_moderator', 
+          'city_moderator' , 
+          'location_moderator' , 
+          'dish_moderator' ].include?(self.role.name) ? true : false
+    end
+
+    def is_review_moderator?
+      [ 'admin', 
+          'full_moderator', 
+          'city_moderator' , 
+          'location_moderator' , 
+          'review_moderator' ].include?(self.role.name) ? true : false
+    end
+
+    def is_moderator?
+      [ 'admin', 
+          'full_moderator', 
+          'city_moderator' , 
+          'location_moderator' , 
+          'review_moderator' ].include?(self.role.name) ? true : false
+    end
 
     def User.authenticate(username, password) 
       if user = find_by_username(username)
