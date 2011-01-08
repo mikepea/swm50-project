@@ -83,7 +83,11 @@
                <a class="title"  href="/">Home</a> 
        <ul> 
            <li> 
+<% if current_user -%>
+               <a class="footlink" href="/logout">Log Out</a> 
+<% else -%>
                <a class="footlink" href="/login">Login</a> 
+<% end -%>
            </li> 
            <li> 
                <a class="footlink" href="/terms">Terms of Use</a> 
@@ -93,42 +97,61 @@
            </li> 
         </ul> 
     </div>   
+<% if current_user -%>
     <div class="footer_group"> 
            <a class="title" href="/users">User Management</a> 
        <ul> 
+<% if current_user.is_admin? -%>
            <li> 
                <a class="footlink" href="/users">Users</a> 
            </li> 
            <li> 
-               <a class="footlink" href="/user_rights">User Rights</a> 
+               <a class="footlink" href="/roles">User Roles</a> 
            </li> 
+<% else -%>
+           <li><%= link_to "Edit Profile", edit_user_path(current_user), :class => 'footlink' -%> </li>
+<% end -%>
         </ul> 
      </div> 
+<% end -%>
+
+<% if current_user and current_user.is_moderator? -%>
      <div class="footer_group">   
            <a class="title" href="/locations">Content Mgmt</a> 
        <ul> 
+<%   if current_user.is_city_moderator? -%>
            <li> 
                <a class="footlink" href="/cities">Cities</a> 
            </li> 
+<%   end -%>
+<%   if current_user.is_location_moderator? -%>
            <li> 
                <a class="footlink" href="/locations">Locations</a> 
            </li> 
+<%   end -%>
+<%   if current_user.is_dish_moderator? -%>
            <li> 
                <a class="footlink" href="/dishes">Dishes</a> 
            </li> 
+<%   end -%>
+<%   if current_user.is_review_moderator? -%>
            <li> 
                <a class="footlink" href="/reviews">Reviews</a> 
            </li> 
+<%   end -%>
       </ul> 
-     </div>   
-     <div class="footer_group">   
+    </div>   
+<% end -%>
+<% if current_user and current_user.is_admin? -%>
+    <div class="footer_group">   
        <a class="title" href="/admin">Admin</a> 
        <ul> 
            <li> 
                <a class="footlink" href="/status">Status</a> 
            </li> 
        </ul>
-     </div>   
+    </div>   
+<% end -%>
    </div>
   </div>
 

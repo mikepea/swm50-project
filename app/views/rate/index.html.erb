@@ -1,2 +1,35 @@
-<h1>Rate#index</h1>
-<p>Find me in app/views/rate/index.html.erb</p>
+<h1>Finished eating?</h1>
+
+<p>Was it tasty, or just 'meh'? <%= link_to 'Others', users_path -%> need to know!<p>
+
+<% if current_dish -%>
+    <p>
+    So, we think you've just eaten a <%= link_to current_dish.name, dish_path(current_dish) -%>, 
+    at <%= link_to current_dish.location.name, location_path(current_dish.location) -%>, 
+    in <%= current_dish.location.city.name -%>.
+    </p>
+
+    <p>
+    If this is correct, 
+    <%= link_to 'why not write up a wee review of what you thought of it', new_review_path(:dish_id => current_dish) -%>?
+    </p>
+
+    <p>
+    If it's not the correct dish, <%= link_to 'find the right pub and dish', find_path -%>, and click 'Rate' again.
+    </p>
+
+<% elsif current_location -%>
+    <p>
+    Ooh. We think you're in <%= current_location.city.name -%>, at <%= current_location.name -%>,
+    but we've got no idea what you've just eaten.
+    <p>
+    Why not 
+    <%= link_to "select it from the list of dishes served at #{current_location.name}", 
+            dishes_path(:location_id => @current_location) -%>, or add it if it's not there.
+    </p>
+<% else -%>
+    <p>
+    We don't yet know where you are (or were...) at,
+    so it's probably best you <%= link_to "pick a pub first", locations_path -%>. 
+    </p>
+<% end -%>

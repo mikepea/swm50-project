@@ -4,7 +4,7 @@
 * { font-family:"Lucida Grande","Helvetica","Arial",sans-serif; }
 body  { font-size: 14px; line-height: 1.5; color: #444; background-color: #fff; }
 h1, h2, h3, h4, h5, h6  { color: #900000; }
-h1  {font-size: 36px;} h2  {font-size: 30px;} h3  {font-size: 24px;} h4  {font-size: 20px;} h5  {font-size: 18px;} h6  {font-size: 16px;}
+h1  {font-size: 24px;} h2  {font-size: 20px;} h3  {font-size: 16px;} h4  {font-size: 16px;} h5  {font-size: 16px;} h6  {font-size: 16px;}
 p  {}
 
 .fr { float: right; }
@@ -54,30 +54,20 @@ ul#nav { margin-top:5px; }
 a.nav_selected { color: #900000; }
 
 /* sub nav bar */
-.nav_arrow {color:#888; padding-right: 5px; text-decoration: none;}
-#sub_nav {background-color:#FFF;}
-#sub_nav_container{ border-bottom: 1px solid #cccccc; }
-#sub_nav { z-index:100; margin:0; padding:0; list-style:none; line-height:1; }
-#sub_nav a  { display:block; z-index:100; line-height:24px; margin-top: 2px; color:#990000; }
-#sub_nav li  { float:left; width: auto;color:#990000; padding:4px 15px; }
-#sub_nav  .selected { border-bottom: 2px solid #cccccc; }
-#sub_nav a:hover { color: #660000; text-decoration:none;  }
-#sub_nav li li.current_page_item { color: #990000; text-decoration:underline; }
-.selected_section{ color:#444; line-height:24px;}
-.selected_section a:hover { text-decoration:none; }
+#sub_nav_container{ border-bottom: 1px solid #cccccc; background-color:#eee }
 
 /* content */
 #content{ background-color: #ddd }
 #content{ background:url("/images/pub_wallpaper.jpg") ;}
-#content .block { margin: 20px 10px 0px 10px; }
+#content .block { margin: 0px 10px 0px 10px; }
 
 #content span.breadcrumbs { line-height:40px;}
 #content span.breadcrumbs { display:block; font-size: 24px; font-weight:bold; }
 
 .shadow {-moz-box-shadow: 4px 4px 4px #666666;-webkit-box-shadow: 4px 4px 4px #666666;box-shadow: 4px 4px 4px #666666 }
 
-.poster_full{ background-color:#FFF; margin:20px 14px 20px 10px;padding-bottom:20px; }
-.poster_full h1 { margin:-20px 0px -5px 30px; }
+.poster_full{ background-color:#FFF; margin:0px 14px 20px 10px;padding-bottom:20px; }
+.poster_full h1 { margin:0px 0px -5px 30px; }
 .poster_full h2 { margin: 0px 0px 0px 30px; }
 .poster_full p { margin: 10px 30px 0px 30px; }
 .poster_full h4 { margin: 0px 30px; 15px; 30px; }
@@ -94,4 +84,8 @@ a.nav_selected { color: #900000; }
 .footer_group  .title { font-size: 12px; color:#888; font-weight:bold; text-transform:uppercase; }
 #footer  .border { border-bottom: 1px solid #DDD; }
 .footer_copyright { font-size: 10px; text-align:center; margin:160px 20px 10px 0px;}
+
+/* locations */
+#location_box { border: 1px solid #000; margin: 5px; }
+.org { font-weight:bold; }
 

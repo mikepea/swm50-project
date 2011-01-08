@@ -1,45 +1,51 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>User:</b>
-  <%= @location.user_id %>
-</p>
+<div id="location_box">
+ <div id="" class="vcard">
+     <span class="fn org"><%= @location.name -%></span>
+<% if @location.website -%>
+  <a class="url fn n" href="<%= @location.website -%>"><%= @location.website -%></a>
+<% end -%>
+<% if @location.email -%>
+  <a class="email" href="mailto:<%= @location.email -%>"><%= @location.email -%></a>
+<% end -%>
+<% if @location.address1 -%>
+  <div class="adr">
+   <div class="street-address">
+<%= @location.address1 -%></br>
+<%  if @location.address2 -%>
+<%=   @location.address2 -%></br>
+<%    if @location.address3 -%>
+<%=     @location.address3 -%></br>
+<%    end -%>
+<%  end -%>
+<% end -%>
+   </div>
+   <span class="locality"><%= @location.city.name -%></span>
+<% if @location.postcode -%>
+   <span class="postal-code"><%= @location.postcode -%></span>
+<% end -%>
+  </div>
+<% if @location.phone -%>
+  <div class="tel">01273 358200</div>
+<% end -%>
+ </div>
 
-<p>
-  <b>Name:</b>
-  <%= @location.name %>
-</p>
-
-<p>
-  <b>Address1:</b>
-  <%= @location.address1 %>
-</p>
-
-<p>
-  <b>Address2:</b>
-  <%= @location.address2 %>
-</p>
-
-<p>
-  <b>Address3:</b>
-  <%= @location.address3 %>
-</p>
-
-<p>
-  <b>Postcode:</b>
-  <%= @location.postcode %>
-</p>
+</div><!-- location_box -->
 
 <p>
   <b>Description:</b>
   <%= sanitize @location.current_description, :tas => %w(p strong em h3 h4 ul li) %>
 </p>
 
-
+<%= link_to 'Dishes', dishes_path(:location_id => @location) %> |
+<% if current_user.is_location_moderator? -%>
 <%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %> |
-<%= link_to 'Dishes', dishes_path(:location_id => @location) %>
-<% unless current_location and @location.id  == current_location.id -%>
+<%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %>
+<% end -%>
+
+<% unless current_location and @location.id == current_location.id -%>
 <%= button_to 'Set this as my current location', user_locations_path(:location_id => @location) %>
 <% end -%>
+
 

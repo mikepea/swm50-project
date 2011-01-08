@@ -5,39 +5,48 @@
 <p>(hint: <%= link_to 'you might want to select which place you are interested in', cities_path -%>)</p>
 <% end -%>
 
-<table>
-  <tr>
-<% unless @city -%>
-    <th>City Name</th>
-<% end -%>
-    <th>Name</th>
-    <th>Address1</th>
-    <th>Address2</th>
-    <th>Address3</th>
-    <th>Postcode</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @locations.each do |location| %>
-  <tr>
-<%   unless @city -%>
-    <td><%= location.city.name %></td>
-<%   end -%>
-    <td><%= location.name %></td>
-    <td><%= location.address1 %></td>
-    <td><%= location.address2 %></td>
-    <td><%= location.address3 %></td>
-    <td><%= location.postcode %></td>
-    <td><%= link_to 'Dishes', dishes_path(:location_id => location) %></td>
-    <td><%= link_to 'Show', location %></td>
-    <td><%= link_to 'Edit', edit_location_path(location) %></td>
-    <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= button_to 'Set as my current location', user_locations_path(:user_location => location) %>
-  </tr>
+
+<div id="location_box" class="vcard">
+ <div id="" class="vcard">
+  <a class="url fn n" href="http://www.thewindmill.com/"><div class="org">The Windmill</div></a>
+<% if location.website -%>
+  <a class="url fn n" href="<%= location.website -%>"><%= location.website -%></a>
+<% end -%>
+<% if location.email -%>
+  <a class="email" href="mailto:<%= location.email -%>"><%= location.email -%></a>
+<% end -%>
+<% if location.address1 -%>
+  <div class="adr">
+   <div class="street-address">
+<%= location.address1 -%></br>
+<%  if location.address2 -%>
+<%=   location.address2 -%></br>
+<%    if location.address3 -%>
+<%=     location.address3 -%></br>
+<%    end -%>
+<%  end -%>
+<% end -%>
+   </div>
+   <span class="locality"><%= location.city.name -%></span>
+<% if location.postcode -%>
+   <span class="postal-code"><%= location.postcode -%></span>
+<% end -%>
+  </div>
+<% if location.phone -%>
+  <div class="tel">01273 358200</div>
+<% end -%>
+ </div>
+<%= link_to 'Dishes', dishes_path(:location_id => location) %> |
+<%= link_to 'Show', location %> |
+<% if current_user.is_location_moderator? -%>
+<%= link_to 'Edit', edit_location_path(location) %> |
+<%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %>
+<% end -%>
+<%= button_to 'Set as my current location', user_locations_path(:user_location => location) %>
+</div><!-- location_box -->
+
 <% end %>
-</table>
 
 <br />
 
