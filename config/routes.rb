@@ -25,6 +25,7 @@ Rateyourroast::Application.routes.draw do
 
   controller :status do 
       get    'status' => :index 
+      get    'denied' => :denied 
   end
 
   controller :find do 

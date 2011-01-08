@@ -11,7 +11,7 @@ class DishesController < ApplicationController
     if params[:location_id]
         @location = Location.find(params[:location_id])
     else
-        @location = @current_location
+        @location = current_location
     end
 
     if @location
@@ -46,7 +46,7 @@ class DishesController < ApplicationController
     if params[:location_id]
         @location = Location.find(params[:location_id])
     else
-        @location = @current_location
+        @location = current_location
     end
     @dish.location_id = @location.id
 
@@ -65,7 +65,7 @@ class DishesController < ApplicationController
   # POST /dishes.xml
   def create
     @dish = Dish.new(params[:dish])
-    @dish.user_id = @current_user.id
+    @dish.user_id = current_user.id
 
     respond_to do |format|
       if @dish.save
@@ -82,7 +82,7 @@ class DishesController < ApplicationController
   # PUT /dishes/1.xml
   def update
     @dish = Dish.find(params[:id])
-    @dish.user_id = @current_user.id
+    @dish.user_id = current_user.id
 
     respond_to do |format|
       if @dish.update_attributes(params[:dish])

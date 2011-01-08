@@ -5,6 +5,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
+    unless current_user.is_admin?
+      redirect_to denied_path
+      return
+    end
+
     @users = User.order(:username)
 
     respond_to do |format|
@@ -47,7 +52,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        if @current_user 
+        if current_user 
           # we're an admin user creating the account
           format.html { redirect_to(users_url, :notice => "User #{@user.name} was successfully created.") }
           format.xml  { render :xml => @user, :status => :created, :location => @user }

@@ -1,10 +1,10 @@
 <h3>Hungry eh?</h3>
-<% if @current_city -%>
+<% if current_city -%>
     <p>
-    Here's <%= link_to "the list of pubs we know about in #{@display_city}", locations_path(:city_id => @current_city) -%>
+    Here's <%= link_to "the list of pubs we know about in #{current_city.name}", locations_path(:city_id => current_city) -%>
     </p>
     <p>
-      If you aren't interested in pubs in <%= @display_city -%>, 
+      If you aren't interested in pubs in <%= current_city.name -%>, 
       you should probably <%= link_to "tell us where you are instead", cities_path -%>. 
     </p>
 <% else -%>
