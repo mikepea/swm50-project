@@ -2,13 +2,11 @@
 
 /* defaults */
 * { font-family:"Lucida Grande","Helvetica","Arial",sans-serif; }
-body  { font-size: 14px; line-height: 1.5; color: #444; background-color: #fff; }
+body { font-size: 14px; line-height: 1.5; color: #444; background-color: #fff; }
 h1, h2, h3, h4, h5, h6  { color: #900000; }
 h1  {font-size: 24px;} h2  {font-size: 20px;} h3  {font-size: 16px;} h4  {font-size: 16px;} h5  {font-size: 16px;} h6  {font-size: 16px;}
 p  {}
-
-.fr { float: right; }
-.fl { float: left; }
+strong  { color: #900000;}
 
 /* links */
 a:link, a:visited  { color: #005128; text-decoration:none; font-weight:bold;  }
@@ -23,8 +21,7 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover  {text-de
 #pagetop{ background:url("/images/bg-page.png") repeat scroll center center transparent; }
 #header{padding: 8px 12px 8px;clear:both;position:relative;z-index:10;}
 #page-header{padding:6px 20px;clear:both;position:relative;z-index:10; background:url("/images/bg-page.png") repeat-x;}
-#pagelogo{ padding-left: 12px; }
-#pagelogo{ padding-left: 12px; }
+
 .col-left { float: left; }
 .col-right { float: right; }
 .col-full  { clear:both; width: 700px; margin: 0 auto; }
@@ -41,7 +38,6 @@ ul#nav { margin-top:5px; }
 #auth_nav { font-size: 12px; float: right; padding-right: 10px; color: #eeeeee; }
 #auth_nav a { color: #eeeeee; }
 .navsep {color:#cccccc; font-size:110%; margin:0 2px 0px 6px;}
-
 
 /* app actions bar */
 #searchform .input { color: red; }
