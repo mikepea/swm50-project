@@ -1,0 +1,33 @@
+  <div id="sub_nav_container">
+    <div class="sub_nav col-full">
+<% if current_user -%>
+    <p id='user_select' class="fl">
+    Hey <%= link_to "#{current_user.name}", user_path(current_user) %>! <%= link_to '(not you?)', logout_path %>
+    </p>
+<% else -%>
+    <p id='user_select' class="fl">
+    <%= link_to "Login", login_path %> 
+    or <%= link_to "register", new_user_path -%> to add new content, 
+    otherwise <%= link_to "browse away!", find_path %>
+    </p>
+<% end -%>
+<% if current_location -%>
+    <p id="dish_select" class="fr">
+    Are you in <strong><%= current_city.name -%></strong>
+    at <%= link_to "#{current_location.name}", location_path(current_location) %><%   if current_dish -%>, eating <%= link_to "#{current_dish.name}", dish_path(current_dish) -%><%   end -%>?
+    If so, <%= link_to 'what are you having for lunch?', dishes_path(:location_id => current_location) %>
+    If not, <%= link_to 'reset and start again', reset_path %>
+    </p>
+<% elsif current_city -%>
+    <p id="pub_select" class="fr">
+    Are you in <strong><%= current_city.name -%></strong>? 
+    If so, <%= link_to 'which pub are you in?', locations_path(:city_id => current_city) -%> 
+    If not, <%= link_to 'where are you?', cities_path() -%>
+    </p>
+<% else -%>
+    <p id="city_select" class="fr">
+    <%= link_to 'where are you?', cities_path -%>
+    </p>
+<% end -%>
+    </div> 
+  </div> 
