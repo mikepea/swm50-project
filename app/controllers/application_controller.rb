@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
+  helper_method :current_user
+  helper_method :current_city
+  helper_method :current_location
+  helper_method :current_dish
+
   private
 
     # Who is logged in?
@@ -15,6 +20,7 @@ class ApplicationController < ActionController::Base
       if session[:user_id]
         @current_user = User.find(session[:user_id])
         @display_user = @current_user.name
+        @current_user
       end
     end
 
@@ -23,6 +29,7 @@ class ApplicationController < ActionController::Base
       if session[:user_city]
         @current_city = City.find(session[:user_city])
         @display_city = @current_city.name
+        @current_city
       end
     end
 
@@ -31,6 +38,7 @@ class ApplicationController < ActionController::Base
       if session[:user_location]
         @current_location = Location.find(session[:user_location])
         @display_location = @current_location.name
+        @current_location
       end
     end
 
@@ -39,6 +47,7 @@ class ApplicationController < ActionController::Base
       if session[:user_dish]
         @current_dish = Dish.find(session[:user_dish])
         @display_dish = @current_dish.name
+        @current_dish
       end
     end
 
