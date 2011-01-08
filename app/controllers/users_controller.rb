@@ -5,16 +5,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    unless current_user.is_admin?
-      redirect_to denied_path
-      return
-    end
-
     @users = User.order(:username)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @users }
+      if current_user.is_admin?
+        format.xml  { render :xml => @users }
+      end
     end
   end
 
@@ -23,9 +20,16 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
+    unless current_user.is_moderator? or @user = current_user
+      redirect_to denied_path
+      return
+    end
+
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @user }
+      if current_user.is_admin?
+        format.xml  { render :xml => @user }
+      end
     end
   end
 
@@ -48,7 +52,16 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    # admin create, or new user registration
+    unless current_user == nil or current_user.is_admin? 
+      redirect_to denied_path
+      return
+    end
     @user = User.new(params[:user])
+
+    unless current_user
+        @user.role = Role.find_by_name('general_user')
+    end
 
     respond_to do |format|
       if @user.save
@@ -59,7 +72,7 @@ class UsersController < ApplicationController
         else 
           # we've just registered
           format.html { redirect_to(login_url, :notice => "Your account has been created, please log in") }
-          format.xml  { render :xml => @user, :status => :created, :location => @user }
+          #format.xml  { render :xml => @user, :status => :created, :location => @user }
         end
       else
         format.html { render :action => "new" }
@@ -72,6 +85,12 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
+
+    # admin user, or editing own profile
+    unless current_user.is_admin? or @user == current_user 
+      redirect_to denied_path
+      return
+    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -90,6 +109,13 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
+
+    # admin user only
+    unless current_user.is_admin?
+      redirect_to denied_path
+      return
+    end
+
     @user = User.find(params[:id])
     @user.destroy
 
