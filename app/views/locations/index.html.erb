@@ -39,8 +39,10 @@
  </div>
 <%= link_to 'Dishes', dishes_path(:location_id => location) %> |
 <%= link_to 'Show', location %> |
-<% if current_user and current_user.is_location_moderator? -%>
+<% if current_user and ( current_user.is_location_moderator? or current_user == location.user ) -%>
 <%= link_to 'Edit', edit_location_path(location) %> |
+<% end -%>
+<% if current_user and current_user.is_location_moderator? -%>
 <%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %>
 <% end -%>
 <%= button_to 'Set as my current location', user_locations_path(:user_location => location) %>

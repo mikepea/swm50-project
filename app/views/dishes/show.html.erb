@@ -15,8 +15,11 @@
   <%= sanitize @dish.description, :tags => %w(p strong em h3 h4 ul li) %>
 </p>
 
-<% if current_user and current_user.is_dish_moderator? -%>
+<% if current_user and ( current_user.is_dish_moderator? or current_user == @dish.user ) -%>
 <%= link_to 'Edit', edit_dish_path(@dish) %> |
+<% end -%>
+<% if current_user and current_user.is_dish_moderator? -%>
+<%= link_to 'Destroy', @dish, :confirm => 'Are you sure?', :method => :delete %>
 <% end -%>
 <%= link_to 'Back', dishes_path %> |
 <%= link_to 'Reviews', reviews_path(:dish_id => @dish) %>

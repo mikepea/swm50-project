@@ -17,7 +17,7 @@
     </div>
   <% end %>
 
-<% if @location -%>
+<% if @location or @dish.location -%>
   <div class="field">
     <%= hidden_field :dish, :location_id %>
   </div>

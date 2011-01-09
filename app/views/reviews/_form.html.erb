@@ -17,7 +17,7 @@
     </div>
   <% end %>
 
-<% if @dish -%>
+<% if @dish or @dish.review -%>
   <div class="field">
     <%= hidden_field :review, :dish_id %>
   </div>

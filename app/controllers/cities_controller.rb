@@ -80,12 +80,11 @@ class CitiesController < ApplicationController
   # PUT /cities/1
   # PUT /cities/1.xml
   def update
-    unless current_user.is_city_moderator?
+    @city = City.find(params[:id])
+    unless current_user.is_city_moderator? or current_user == @city.user
       redirect_to denied_path
       return
     end
-    @city = City.find(params[:id])
-    @city.user_id = current_user.id
     unless current_user.is_city_moderator?
       redirect_to denied_path
       return

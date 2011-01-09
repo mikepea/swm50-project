@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    unless current_user.is_moderator? or @user = current_user
+    unless current_user.is_moderator? or @user == current_user
       redirect_to denied_path
       return
     end
@@ -47,6 +47,10 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    unless current_user == @user or current_user.is_admin? 
+      redirect_to denied_path
+      return
+    end
   end
 
   # POST /users

@@ -74,7 +74,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.xml
   def create
-    # any registered user can add a location
+    # any registered user can add a review
     unless current_user.is_general_user?
       redirect_to denied_path
       return
@@ -97,13 +97,11 @@ class ReviewsController < ApplicationController
   # PUT /reviews/1
   # PUT /reviews/1.xml
   def update
-    unless current_user.is_review_moderator?
+    @review = Review.find(params[:id])
+    unless current_user.is_review_moderator? or current_user = @review.user
       redirect_to denied_path
       return
     end
-
-    @review = Review.find(params[:id])
-    @review.user_id = current_user.id
 
     respond_to do |format|
       if @review.update_attributes(params[:review])

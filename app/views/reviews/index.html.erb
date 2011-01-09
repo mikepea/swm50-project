@@ -19,8 +19,10 @@
     <td><%= link_to "#{review.user.name}", user_path(review.user) -%></td>
     <td><%= sanitize review.review_body %></td>
     <td><%= link_to 'Show', review %></td>
-<% if current_user and current_user.is_review_moderator? -%>
+<% if current_user and ( current_user.is_review_moderator? or current_user == review.user ) -%>
     <td><%= link_to 'Edit', edit_review_path(review) %></td>
+<% end -%>
+<% if current_user and current_user.is_review_moderator? -%>
     <td><%= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete %></td>
 <% end -%>
   </tr>

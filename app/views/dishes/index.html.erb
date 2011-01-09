@@ -32,8 +32,10 @@ If the roast that you are eating is not listed, please <%= link_to 'feel free to
     <td><%= dish.name %></td>
     <td><%= link_to 'Reviews', reviews_path(:dish_id => dish) %></td>
     <td><%= link_to 'Show', dish %></td>
-<% if current_user and current_user.is_review_moderator? -%>
+<% if current_user and ( current_user.is_dish_moderator? or current_user == dish.user ) -%>
     <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
+<% end -%>
+<% if current_user and current_user.is_dish_moderator? -%>
     <td><%= link_to 'Destroy', dish, :confirm => 'Are you sure?', :method => :delete %></td>
 <% end -%>
     <td><%= button_to 'Set as my current dish', user_dishes_path(:user_dish => dish) %>

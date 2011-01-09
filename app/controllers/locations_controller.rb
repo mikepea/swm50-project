@@ -16,7 +16,6 @@ class LocationsController < ApplicationController
 
     if @city
         @locations = Location.find_all_by_city_id(@city) || Array.new
-        logger.info "locations: " + @locations.inspect
     else
         @locations = Location.all
     end
@@ -51,7 +50,6 @@ class LocationsController < ApplicationController
     end
 
     @location = Location.new
-    logger.info "location.new params: " + params.inspect
     if params[:city_id]
         @city = City.find(params[:city_id])
     else
@@ -67,11 +65,11 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
-    unless current_user.is_location_moderator?
+    @location = Location.find(params[:id])
+    unless current_user.is_location_moderator? or current_user == @location.user
       redirect_to denied_path
       return
     end
-    @location = Location.find(params[:id])
   end
 
   # POST /locations
@@ -100,12 +98,12 @@ class LocationsController < ApplicationController
   # PUT /locations/1
   # PUT /locations/1.xml
   def update
-    unless current_user.is_location_moderator?
+    @location = Location.find(params[:id])
+    # 'owner' of location can change it too.
+    unless current_user.is_location_moderator? or current_user == @location.user
       redirect_to denied_path
       return
     end
-    @location = Location.find(params[:id])
-    @location.user_id = current_user.id
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
