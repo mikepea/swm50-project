@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#new_city").validate();
+    });
+</script>
+
 <%= form_for(@city) do |f| %>
   <% if @city.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +19,7 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => "required", :minlength => "2" %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#new_dish").validate();
+    });
+</script>
+
 <%= form_for(@dish) do |f| %>
   <% if @dish.errors.any? %>
     <div id="error_explanation">
@@ -24,7 +30,7 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => "required", :minlength => "2"  %>
   </div>
   <div class="field">
     <%= f.label :description %><br />

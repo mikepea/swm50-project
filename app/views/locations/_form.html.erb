@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#new_location").validate();
+    });
+</script>
+
 <%= form_for(@location) do |f| %>
   <% if @location.errors.any? %>
     <div id="error_explanation">
@@ -23,7 +29,7 @@
 <% end -%>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => "required", :minlength => "2"  %>
   </div>
   <div class="field">
     <%= f.label :address1 %><br />

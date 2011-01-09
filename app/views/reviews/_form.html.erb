@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#new_review").validate();
+    });
+</script>
+
 <%= form_for(@review) do |f| %>
   <% if @review.errors.any? %>
     <div id="error_explanation">
@@ -24,7 +30,7 @@
 
   <div class="field">
     <%= f.label :review_body %><br />
-    <%= f.text_area :review_body, :class => "mceEditor" %>
+    <%= f.text_area :review_body, :class => "mceEditor", :class => "required", :minlength => "2"  %>
   </div>
   <div class="actions">
     <%= f.submit %>
