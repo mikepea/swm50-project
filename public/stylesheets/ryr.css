@@ -53,7 +53,7 @@ ul#nav { margin-top:5px; }
 
 .shadow {-moz-box-shadow: 4px 4px 4px #666666;-webkit-box-shadow: 4px 4px 4px #666666;box-shadow: 4px 4px 4px #666666 }
 
-.poster_full{ background-color:#FFF; margin:30px 14px 20px 10px;padding:20px 10px 20px 10px; }
+.poster_full{ background-color:#FFF; margin:0px 14px 20px 10px;padding:20px 10px 20px 10px; }
 .poster_full h1 { margin:0px 0px -5px 0px; }
 .poster_full h2 { margin:0px 0px -5px 0px; color: #111;}
 .poster_full h2 a { color: #000;}
