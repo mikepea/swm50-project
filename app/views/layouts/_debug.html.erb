@@ -1,24 +1,28 @@
   <div id="sub_nav_container">
     <div class="sub_nav col-full">
 
-<p>
-pre_login_req_uri: <%= session[:pre_login_req_uri] -%>
-</p>
-<p>
-dest: <%= session[:pre_pre_login_req_uri] -%>
-</p>
-<p>
-REQUEST_URI: <%= request.env['REQUEST_URI'] -%>
-</p>
-<p>
-user: <%= User.find_by_id(session[:user_id]).inspect -%>
-</p>
-
-<p class="jquery_status">JQuery not enabled</p>
+        <p class="jquery_status"><strong>JQuery not working</strong></p>
 <script type='text/javascript'>
-    jQuery('p.jquery_status').replaceWith('<strong>JQuery enabled</strong>');
-    //alert(jQuery('p').html());
+    jQuery('p.jquery_status').replaceWith('JQuery enabled');
 </script>
+
+<h3 id="general_debug">General debugging</h3>
+    <p>
+        pre_login_req_uri: <%= session[:pre_login_req_uri] -%>
+    </p>
+    <p>
+        dest: <%= session[:pre_pre_login_req_uri] -%>
+    </p>
+    <p>
+        REQUEST_URI: <%= request.env['REQUEST_URI'] -%>
+    </p>
+
+    <h3 id="user_debug">User debug</h3>
+    <p><%= User.find_by_id(session[:user_id]).role.name -%></p>
+    <p><%= User.find_by_id(session[:user_id]).inspect -%></p>
+
+    <h3 id="session_debug">Session debug</h3>
+    <p><%= session.inspect -%></p>
 
     </div> 
   </div> 
