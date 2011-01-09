@@ -1,46 +1,15 @@
 class LocationDescriptionsController < ApplicationController
-  # GET /location_descriptions
-  # GET /location_descriptions.xml
-  def index
-    @location_descriptions = LocationDescription.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @location_descriptions }
-    end
-  end
-
-  # GET /location_descriptions/1
-  # GET /location_descriptions/1.xml
-  def show
-    @location_description = LocationDescription.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @location_description }
-    end
-  end
-
-  # GET /location_descriptions/new
-  # GET /location_descriptions/new.xml
-  def new
-    @location_description = LocationDescription.new
-    @location.user_id = current_user.id
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @location_description }
-    end
-  end
-
-  # GET /location_descriptions/1/edit
-  def edit
-    @location_description = LocationDescription.find(params[:id])
-  end
 
   # POST /location_descriptions
   # POST /location_descriptions.xml
   def create
+
+    # any registered user can add a location
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @location_description = LocationDescription.new(params[:location_description])
 
     respond_to do |format|
@@ -57,6 +26,11 @@ class LocationDescriptionsController < ApplicationController
   # PUT /location_descriptions/1
   # PUT /location_descriptions/1.xml
   def update
+    unless current_user.is_location_moderator?
+      redirect_to denied_path
+      return
+    end
+
     @location_description = LocationDescription.find(params[:id])
 
     respond_to do |format|
@@ -73,6 +47,11 @@ class LocationDescriptionsController < ApplicationController
   # DELETE /location_descriptions/1
   # DELETE /location_descriptions/1.xml
   def destroy
+    unless current_user.is_location_moderator?
+      redirect_to denied_path
+      return
+    end
+
     @location_description = LocationDescription.find(params[:id])
     @location_description.destroy
 
