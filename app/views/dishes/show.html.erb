@@ -15,7 +15,9 @@
   <%= sanitize @dish.description, :tags => %w(p strong em h3 h4 ul li) %>
 </p>
 
+<% if current_user and current_user.is_dish_moderator? -%>
 <%= link_to 'Edit', edit_dish_path(@dish) %> |
+<% end -%>
 <%= link_to 'Back', dishes_path %> |
 <%= link_to 'Reviews', reviews_path(:dish_id => @dish) %>
 <% unless current_dish and @dish.id == current_dish.id -%>

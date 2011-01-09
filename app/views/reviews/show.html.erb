@@ -20,5 +20,7 @@
   <%= sanitize @review.review_body, :tags => %w(p strong em h3 h4 ul li) %>
 </p>
 
+<% if current_user and current_user.is_review_moderator? -%>
 <%= link_to 'Edit', edit_review_path(@review) %> |
+<% end -%>
 <%= link_to 'Back', reviews_path %>

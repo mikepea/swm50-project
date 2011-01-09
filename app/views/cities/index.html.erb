@@ -13,8 +13,10 @@
     <td><%= city.name %></td>
     <td><%= link_to 'Pubs', locations_path(:city_id => city) %></td>
     <td><%= link_to 'Show', city %></td>
+<% if current_user and current_user.is_city_moderator? -%>
     <td><%= link_to 'Edit', edit_city_path(city) %></td>
     <td><%= link_to 'Destroy', city, :confirm => 'Are you sure?', :method => :delete %></td>
+<% end -%>
     <td><%= button_to 'Set as my current city', user_cities_path(:user_city => city) %>
   </tr>
 <% end %>
