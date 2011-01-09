@@ -1,9 +1,16 @@
 
 <% if @location -%>
-<h1>Listing dishes for <%= @location.name -%></h1>
-<% else -%>
-<h1>Listing all dishes for all pubs</h1>
+<h1>Food at <%= @location.name -%>, that we know about</h1>
+<p>
+If the roast that you are eating is not listed, please <%= link_to 'feel free to add it', new_dish_path -%>
+<% unless current_user -%> (you'll need to <%= link_to 'register' -%> first though)<% end -%>.
+<% elsif current_city -%>
+<h1>Food in <%= current_city.name -%></h1>
 <p>(hint: <%= link_to 'you might want to select which pub you are interested in', locations_path -%></p>
+<% else-%>
+<h1>Listing all food</h1>
+<p>Blimey! That's a lot of pubs and roasts!<p>
+<p>(hint: <%= link_to 'you might want to select which town/city you are interested in', cities_path -%></p>
 <% end -%>
 
 <table>

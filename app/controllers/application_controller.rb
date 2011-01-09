@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 
+  before_filter :req_uri_saver
   before_filter :current_user
   before_filter :current_city
   before_filter :current_location
@@ -14,6 +15,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_dish
 
   private
+
+    # Who is logged in?
+    def req_uri_saver
+        session[:prev_dest] = session[:dest]
+        session[:dest] = request.env['REQUEST_URI']
+    end
 
     # Who is logged in?
     def current_user

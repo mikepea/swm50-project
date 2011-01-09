@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   def reset_selection
       session[:user_location] = nil 
       session[:user_dish] = nil 
-      redirect_to find_url, :notice => "Session Reset"
+      redirect_to find_url, :notice => "Your selection has been reset"
   end
 
   def destroy

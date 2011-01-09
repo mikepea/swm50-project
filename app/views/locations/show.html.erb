@@ -39,7 +39,7 @@
 </p>
 
 <%= link_to 'Dishes', dishes_path(:location_id => @location) %> |
-<% if current_user.is_location_moderator? -%>
+<% if current_user and current_user.is_location_moderator? -%>
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %>
 <% end -%>

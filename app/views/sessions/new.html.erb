@@ -6,6 +6,10 @@
   <p id="notice"><%= flash[:notice] %></p> 
   <% end %>
 
+<% if current_user -%>
+  <h1>You don't have access to that page</h1>
+  <p>If this is in error, please contact the site admin for assistence</p>
+<% else -%>
   <%= form_tag do %> 
     <fieldset>
         <h3><legend>Please Log In</legend></h3>
@@ -22,5 +26,7 @@
       </div> 
     </fieldset>
   <% end %> 
+  <p>If you don't have a login, <%= link_to "registration is quick and easy", new_user_path -%></p>
+<% end -%>
  </div>
 </div>
