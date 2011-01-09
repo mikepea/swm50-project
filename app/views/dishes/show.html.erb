@@ -1,28 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>User:</b>
-  <%= @dish.user_id %>
-</p>
+<div id="dish_box">
 
-<p>
-  <b>Name:</b>
-  <%= @dish.name %>
-</p>
+<h2>
+<%= @dish.name -%> at <%= link_to "#{@dish.location.name}", location_path(@dish.location) -%>
+</h2>
+<% unless current_dish and @dish.id == current_dish.id -%>
+<%= button_to 'Set this as my current dish', user_dishes_path(:user_dish => @dish) %>
+<% end -%>
 
-<p>
-  <b>Description:</b>
+<div id="dish_description">
   <%= sanitize @dish.description, :tags => %w(p strong em h3 h4 ul li) %>
+</div>
+<p>
+(added by <%= link_to "#{@dish.user.name}", user_path(@dish.user) -%>)
+</p>
+
+<p>
+<%= link_to "Read reviews of #{@dish.name}", reviews_path(:dish_id => @dish) %>
 </p>
 
 <% if current_user and ( current_user.is_dish_moderator? or current_user == @dish.user ) -%>
-<%= link_to 'Edit', edit_dish_path(@dish) %> |
+<%= link_to 'Edit', edit_dish_path(@dish) %>
 <% end -%>
 <% if current_user and current_user.is_dish_moderator? -%>
 <%= link_to 'Destroy', @dish, :confirm => 'Are you sure?', :method => :delete %>
 <% end -%>
-<%= link_to 'Back', dishes_path %> |
-<%= link_to 'Reviews', reviews_path(:dish_id => @dish) %>
-<% unless current_dish and @dish.id == current_dish.id -%>
-<%= button_to 'Set this as my current dish', user_dishes_path(:user_dish => @dish) %>
-<% end -%>
+
+</div>

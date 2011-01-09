@@ -1,24 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>User:</b>
-  <%= link_to "#{@review.user.name}", user_path(@review.user) -%>
-</p>
+<div id="review_box">
 
-<p>
-  <b>Location:</b>
-  <%= link_to "#{@review.dish.location.name}", location_path(@review.dish.location) -%>
-</p>
+<h2>
+    Review of <%= link_to "#{@review.dish.name}", 
+        dish_path(@review.dish) -%> at <%= link_to "#{@review.dish.location.name}", 
+        location_path(@review.dish.location) -%>
+</h2>
+<p>(by <%= link_to "#{@review.user.name}", user_path(@review.user) -%>)</p>
 
-<p>
-  <b>Dish:</b>
-  <%= link_to "#{@review.dish.name}", location_path(@review.dish) -%>
-</p>
-
-<p>
-  <b>Review:</b>
+<div id="review_text">
   <%= sanitize @review.review_body, :tags => %w(p strong em h3 h4 ul li) %>
-</p>
+</div>
 
 <% if current_user and ( current_user.is_review_moderator? or current_user == @review.user ) -%>
 <%= link_to 'Edit', edit_review_path(@review) %> |
@@ -26,4 +19,5 @@
 <% if current_user and current_user.is_review_moderator? -%>
 <%= link_to 'Destroy', @review, :confirm => 'Are you sure?', :method => :delete %>
 <% end -%>
-<%= link_to 'Back', reviews_path %>
+<%= link_to 'Back', reviews_path(:dish_id => @review.dish_id) %>
+<div id="review_box">

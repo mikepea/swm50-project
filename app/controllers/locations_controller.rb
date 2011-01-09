@@ -50,12 +50,15 @@ class LocationsController < ApplicationController
     end
 
     @location = Location.new
+    @location.current_description = ""
     if params[:city_id]
         @city = City.find(params[:city_id])
     else
         @city = current_city
     end
     @location.city_id = @city.id
+
+    logger.info "new location: #{location.inspect}"
 
     respond_to do |format|
       format.html # new.html.erb

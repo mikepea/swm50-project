@@ -1,15 +1,18 @@
 <% if @city -%>
-<h1>Pubs in <%= @city.name -%></h1>
+<h1>Pubs we know about in <%= @city.name -%></h1>
 <% else -%>
 <h1>Here are all pubs we know about.</h1>
 <p>(hint: <%= link_to 'you might want to select which place you are interested in', cities_path -%>)</p>
 <% end -%>
 
+<%= link_to "If the pub you're going to isn't listed, feel free to add it!", new_location_path(:city_id => @city) %>
+
+
 <% @locations.each do |location| %>
 
-<div id="location_box" class="vcard">
- <div id="" class="vcard">
-  <a class="url fn n" href="http://www.thewindmill.com/"><div class="org">The Windmill</div></a>
+<div id="location_box" class="">
+ <div id="address" class="vcard">
+  <span class="fn org"><%= link_to location.name, location_path(location) -%></span>
 <% if location.website -%>
   <a class="url fn n" href="<%= location.website -%>"><%= location.website -%></a>
 <% end -%>

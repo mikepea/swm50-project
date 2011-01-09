@@ -39,35 +39,26 @@ ul#nav { margin-top:5px; }
 #auth_nav a { color: #eeeeee; }
 .navsep {color:#cccccc; font-size:110%; margin:0 2px 0px 6px;}
 
-/* app actions bar */
-#searchform .input { color: red; }
-#app_nav { background-color:#eee; font-size: 16px; height: 27px; padding: 8px 16px 8px 16px; border-bottom:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd; }
-#app_nav_search { float: right; overflow: hidden; }
-#app_nav_search .textbox { font-size: 16px; background:url("/media/images/search.png") no-repeat scroll left center #FFFFFF; border-color:#CCCCCC -moz-use-text-color -moz-use-text-color #CCCCCC; border-right:medium none; border-style:solid none none solid; border-width:1px medium medium 1px; height: 23px; margin-left: 2px; padding-left:20px;}
-#app_nav_search .placeholder { font-style: oblique; color: gray; }
-
-#app_nav_links { float: left; width: 43%;}
-a.nav_selected { color: #900000; }
-
 /* sub nav bar */
 #sub_nav_container{ border-bottom: 1px solid #cccccc; background-color:#eee }
+
+#entry { margin: 30px 30px 30px 30px; }
 
 /* content */
 #content{ background-color: #ddd }
 #content{ background:url("/images/pub_wallpaper.jpg") ;}
-#content .block { margin: 0px 10px 0px 10px; }
 
 #content span.breadcrumbs { line-height:40px;}
 #content span.breadcrumbs { display:block; font-size: 24px; font-weight:bold; }
 
 .shadow {-moz-box-shadow: 4px 4px 4px #666666;-webkit-box-shadow: 4px 4px 4px #666666;box-shadow: 4px 4px 4px #666666 }
 
-.poster_full{ background-color:#FFF; margin:0px 14px 20px 10px;padding-bottom:20px; }
-.poster_full h1 { margin:0px 0px -5px 30px; }
-.poster_full h2 { margin: 0px 0px 0px 30px; }
-.poster_full p { margin: 10px 30px 0px 30px; }
-.poster_full h4 { margin: 0px 30px; 15px; 30px; }
-.poster_full h6 { margin: 0px 30px; 15px; 30px; color:#444;}
+.poster_full{ background-color:#FFF; margin:30px 14px 20px 10px;padding:20px 10px 20px 10px; }
+.poster_full h1 { margin:0px 0px -5px 0px; }
+.poster_full h2 { margin:0px 0px -5px 0px; color: #111;}
+.poster_full h2 a { color: #000;}
+.poster_full ul { margin:10px; list-style-position:inside; }
+.poster_full li { list-style-type: disc;}
 
 
 #footer{ padding: 30px 0; border-top: 3px solid #EEE; height:160px; }
@@ -82,6 +73,7 @@ a.nav_selected { color: #900000; }
 .footer_copyright { font-size: 10px; text-align:center; margin:160px 20px 10px 0px;}
 
 /* locations */
-#location_box { border: 1px solid #000; margin: 5px; }
+#location_box { border: 1px dotted #000; margin: 5px; padding: 10px; }
 .org { font-weight:bold; }
 
+#address { background-color: #ddd; padding: 5px; }

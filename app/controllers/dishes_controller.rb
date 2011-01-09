@@ -97,11 +97,11 @@ class DishesController < ApplicationController
   # PUT /dishes/1
   # PUT /dishes/1.xml
   def update
-    unless current_user.is_dish_moderator?
+    @dish = Dish.find(params[:id])
+    unless current_user.is_dish_moderator? or current_user == @dish.user
       redirect_to denied_path
       return
     end
-    @dish = Dish.find(params[:id])
     @dish.user_id = current_user.id
 
     respond_to do |format|

@@ -11,10 +11,16 @@
     otherwise <%= link_to "browse away!", find_path %>
     </p>
 <% end -%>
-<% if current_location -%>
-    <p id="dish_select" class="fr">
+<% if current_dish -%>
+    <p>
     Are you in <strong><%= current_city.name -%></strong>
     at <%= link_to "#{current_location.name}", location_path(current_location) %><%   if current_dish -%>, eating <%= link_to "#{current_dish.name}", dish_path(current_dish) -%><%   end -%>?
+    If not, <%= link_to 'reset and start again', reset_path %>
+    </p>
+<% elsif current_location -%>
+    <p id="dish_select" class="fr">
+    Are you in <strong><%= current_city.name -%></strong>
+    at <%= link_to "#{current_location.name}", location_path(current_location) %>?
     If so, <%= link_to 'what are you having for lunch?', dishes_path(:location_id => current_location) %>
     If not, <%= link_to 'reset and start again', reset_path %>
     </p>
