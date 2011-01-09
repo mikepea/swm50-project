@@ -18,7 +18,6 @@
     </p>
 
     <h3 id="user_debug">User debug</h3>
-    <p><%= User.find_by_id(session[:user_id]).role.name -%></p>
     <p><%= User.find_by_id(session[:user_id]).inspect -%></p>
 
     <h3 id="session_debug">Session debug</h3>

@@ -32,21 +32,36 @@ class ApplicationController < ActionController::Base
     # Where is the person?
     def current_city
       if session[:user_city]
-        City.find(session[:user_city])
+        begin
+          City.find(session[:user_city])
+        rescue 
+          session[:user_city] = nil
+          session[:user_location] = nil
+          session[:user_dish] = nil
+        end
       end
     end
 
     # Where is the person?
     def current_location
       if session[:user_location]
-        Location.find(session[:user_location])
+        begin
+          Location.find(session[:user_location])
+        rescue 
+          session[:user_location] = nil
+          session[:user_dish] = nil
+        end
       end
     end
 
     # What do they intend to eat/review?
     def current_dish
       if session[:user_dish]
-        Dish.find(session[:user_dish])
+        begin
+          Dish.find(session[:user_dish])
+        rescue 
+          session[:user_dish] = nil
+        end
       end
     end
 

@@ -46,7 +46,7 @@
 <% end -%>
 
 <% unless current_location and @location.id == current_location.id -%>
-<%= button_to 'Set this as my current location', user_locations_path(:location_id => @location) %>
+<%= button_to 'Set this as my current location', user_locations_path(:user_location => @location.id) %>
 <% end -%>
 
 <%= link_to "Back to pubs in #{@location.city.name}", locations_path(:city_id => @location.city) %>
