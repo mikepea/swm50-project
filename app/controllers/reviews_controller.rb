@@ -41,6 +41,12 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   # GET /reviews/new.xml
   def new
+    # any registered user can add a location
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @review = Review.new
     logger.info "review.new params: " + params.inspect
     if params[:dish_id]
@@ -58,12 +64,22 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    unless current_user.is_review_moderator?
+      redirect_to denied_path
+      return
+    end
     @review = Review.find(params[:id])
   end
 
   # POST /reviews
   # POST /reviews.xml
   def create
+    # any registered user can add a location
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @review = Review.new(params[:review])
     @review.user_id = current_user.id
 
@@ -81,6 +97,11 @@ class ReviewsController < ApplicationController
   # PUT /reviews/1
   # PUT /reviews/1.xml
   def update
+    unless current_user.is_review_moderator?
+      redirect_to denied_path
+      return
+    end
+
     @review = Review.find(params[:id])
     @review.user_id = current_user.id
 
@@ -98,6 +119,11 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.xml
   def destroy
+    unless current_user.is_review_moderator?
+      redirect_to denied_path
+      return
+    end
+
     @review = Review.find(params[:id])
     @review.destroy
 

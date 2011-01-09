@@ -81,6 +81,15 @@ class User < ActiveRecord::Base
           'review_moderator' ].include?(self.role.name) ? true : false
     end
 
+    def is_general_user?
+      [ 'admin', 
+          'full_moderator', 
+          'city_moderator' , 
+          'location_moderator', 
+          'review_moderator', 
+          'general_user' ].include?(self.role.name) ? true : false
+    end
+
     def User.authenticate(username, password) 
       if user = find_by_username(username)
         if user.hashed_password == encrypt_password(password, user.salt) 

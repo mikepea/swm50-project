@@ -41,6 +41,12 @@ class DishesController < ApplicationController
   # GET /dishes/new
   # GET /dishes/new.xml
   def new
+    # any registered user can add a location
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @dish = Dish.new
     logger.info "dishes#new params: " + params.inspect
     if params[:location_id]
@@ -58,12 +64,22 @@ class DishesController < ApplicationController
 
   # GET /dishes/1/edit
   def edit
+    unless current_user.is_dish_moderator?
+      redirect_to denied_path
+      return
+    end
     @dish = Dish.find(params[:id])
   end
 
   # POST /dishes
   # POST /dishes.xml
   def create
+    # any registered user can add a location
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @dish = Dish.new(params[:dish])
     @dish.user_id = current_user.id
 
@@ -81,6 +97,10 @@ class DishesController < ApplicationController
   # PUT /dishes/1
   # PUT /dishes/1.xml
   def update
+    unless current_user.is_dish_moderator?
+      redirect_to denied_path
+      return
+    end
     @dish = Dish.find(params[:id])
     @dish.user_id = current_user.id
 
@@ -98,6 +118,10 @@ class DishesController < ApplicationController
   # DELETE /dishes/1
   # DELETE /dishes/1.xml
   def destroy
+    unless current_user.is_dish_moderator?
+      redirect_to denied_path
+      return
+    end
     @dish = Dish.find(params[:id])
     @dish.destroy
 

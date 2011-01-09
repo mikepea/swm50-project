@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
 
-  skip_before_filter :authorize
+  skip_before_filter :authorize, :only => [ :show, :index ]
 
   # GET /cities
   # GET /cities.xml
@@ -27,6 +27,13 @@ class CitiesController < ApplicationController
   # GET /cities/new
   # GET /cities/new.xml
   def new
+
+    # any registered user can add a city
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @city = City.new
 
     respond_to do |format|
@@ -37,12 +44,25 @@ class CitiesController < ApplicationController
 
   # GET /cities/1/edit
   def edit
+
+    unless current_user.is_city_moderator?
+      redirect_to denied_path
+      return
+    end
+
     @city = City.find(params[:id])
   end
 
   # POST /cities
   # POST /cities.xml
   def create
+
+    # any registered user can add a city
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @city = City.new(params[:city])
     @city.user_id = current_user.id
 
@@ -60,8 +80,16 @@ class CitiesController < ApplicationController
   # PUT /cities/1
   # PUT /cities/1.xml
   def update
+    unless current_user.is_city_moderator?
+      redirect_to denied_path
+      return
+    end
     @city = City.find(params[:id])
     @city.user_id = current_user.id
+    unless current_user.is_city_moderator?
+      redirect_to denied_path
+      return
+    end
 
     respond_to do |format|
       if @city.update_attributes(params[:city])
@@ -77,6 +105,10 @@ class CitiesController < ApplicationController
   # DELETE /cities/1
   # DELETE /cities/1.xml
   def destroy
+    unless current_user.is_city_moderator?
+      redirect_to denied_path
+      return
+    end
     @city = City.find(params[:id])
     @city.destroy
 

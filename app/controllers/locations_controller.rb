@@ -43,6 +43,13 @@ class LocationsController < ApplicationController
   # GET /locations/new
   # GET /locations/new.xml
   def new
+
+    # any registered user can add a location
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @location = Location.new
     logger.info "location.new params: " + params.inspect
     if params[:city_id]
@@ -60,12 +67,22 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
+    unless current_user.is_location_moderator?
+      redirect_to denied_path
+      return
+    end
     @location = Location.find(params[:id])
   end
 
   # POST /locations
   # POST /locations.xml
   def create
+    # any registered user can add a location
+    unless current_user.is_general_user?
+      redirect_to denied_path
+      return
+    end
+
     @location = Location.new(params[:location])
     @location.user_id = current_user.id
 
@@ -83,6 +100,10 @@ class LocationsController < ApplicationController
   # PUT /locations/1
   # PUT /locations/1.xml
   def update
+    unless current_user.is_location_moderator?
+      redirect_to denied_path
+      return
+    end
     @location = Location.find(params[:id])
     @location.user_id = current_user.id
 
@@ -100,6 +121,10 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.xml
   def destroy
+    unless current_user.is_location_moderator?
+      redirect_to denied_path
+      return
+    end
     @location = Location.find(params[:id])
     @location.destroy
 
