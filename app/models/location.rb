@@ -14,15 +14,18 @@ class Location < ActiveRecord::Base
         :message => 'can only contain a-z, 0-9, space and -, !, \''
     }
 
+    after_save  :update_location_description
+
     #validates_length_of :name, 
     #  :minimum   => 1,
     #  :maximum   => 100
     #}
 
-    def current_description 
+    def current_description
         ld = LocationDescription.find_last_by_location_id(self.id)
-        puts "current_description: #{self.id}\n"
-        if ld 
+        if @current_description
+            @current_description
+        elsif ld 
             ld.description
         else
             ""
@@ -30,9 +33,12 @@ class Location < ActiveRecord::Base
     end
 
     def current_description=(desc)
-        ld = LocationDescription.new(:location_id => self.id, :description => desc)
+        @current_description=desc
+    end
+
+    def update_location_description
+        ld = LocationDescription.new(:location_id => self.id, :description => self.current_description)
         ld.save
-        desc
     end
 
 end
