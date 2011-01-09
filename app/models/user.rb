@@ -17,19 +17,18 @@ class User < ActiveRecord::Base
         :message => 'can only contain a-z, 0-9, space and -, \''
     }
 
-    validates :email, 
-        :uniqueness => true
-        #:message => "is already in use, please use another"
+    validates :username, :length => { :minimum => 2, :maximum => 254 }
+    validates :password, :length => { :minimum => 6, :maximum => 254 }
 
     validates :email,
         :length => { :minimum => 5, :maximum => 254 }
         #:message => 'must be between 5 and 254 characters long'
 
-    #validates :email,
-    #    :format => {
-    #       :with   => %r{^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$}i
-    #    },
-    #    :message => 'must be a valid email address'
+    validates :email,
+        :format => {
+            :with   => %r{^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$}i,
+            :message => 'must be a valid email address'
+        }
 
     attr_accessor :password_confirmation 
     attr_reader :password

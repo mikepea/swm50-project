@@ -1,0 +1,24 @@
+  <div id="sub_nav_container">
+    <div class="sub_nav col-full">
+
+<p>
+pre_login_req_uri: <%= session[:pre_login_req_uri] -%>
+</p>
+<p>
+dest: <%= session[:pre_pre_login_req_uri] -%>
+</p>
+<p>
+REQUEST_URI: <%= request.env['REQUEST_URI'] -%>
+</p>
+<p>
+user: <%= User.find_by_id(session[:user_id]).inspect -%>
+</p>
+
+<p class="jquery_status">JQuery not enabled</p>
+<script type='text/javascript'>
+    jQuery('p.jquery_status').replaceWith('<strong>JQuery enabled</strong>');
+    //alert(jQuery('p').html());
+</script>
+
+    </div> 
+  </div> 

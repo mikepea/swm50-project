@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $("#new_user").validate();
+    });
+</script>
+
 <div class="ryr_form">
 
 <%= form_for(@user) do |f| %>
@@ -15,23 +21,23 @@
 
   <div class="field">
     <%= f.label :username %><br />
-    <%= f.text_field :username, :size => 40 %>
+    <%= f.text_field :username, :size => 40, :class => "required", :minlength => "2" %>
   </div>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, :size => 40 %>
+    <%= f.text_field :name, :size => 40, :class => "required", :minlength => "2" %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.text_field :email, :size => 60 %>
+    <%= f.text_field :email, :size => 60, :class => "required email" %>
   </div>
   <div class="field">
     <%= f.label :password, 'Password:' %><br />
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :class => "required", :minlength => "6" %>
   </div>
   <div class="field">
     <%= f.label :password_confirmation, 'Confirm:' %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class => "required", :minlength => "6", :equalto => "#user_password" %>
   </div>
   <div class="actions">
     <%= f.submit %>
