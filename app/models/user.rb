@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
     }
 
     validates :username, :length => { :minimum => 2, :maximum => 254 }
-    validates :password, :length => { :minimum => 6, :maximum => 254 }
 
     validates :email,
         :length => { :minimum => 5, :maximum => 254 }

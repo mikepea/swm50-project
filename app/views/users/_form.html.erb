@@ -39,6 +39,13 @@
     <%= f.label :password_confirmation, 'Confirm:' %><br />
     <%= f.password_field :password_confirmation, :class => "required", :minlength => "6", :equalto => "#user_password" %>
   </div>
+<% if current_user.is_admin? -%>
+  <% roles = Role.all %>
+  <div class="field">
+    <%= f.label :role, 'Role:' %><br />
+    <%= f.collection_select :role_id, roles, :id, :name, :prompt => true %>
+  </div>
+<% end -%>
   <div class="actions">
     <%= f.submit %>
   </div>
