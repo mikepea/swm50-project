@@ -69,6 +69,7 @@ class User < ActiveRecord::Base
           'full_moderator', 
           'city_moderator' , 
           'location_moderator' , 
+          'dish_moderator', 
           'review_moderator' ].include?(self.role.name) ? true : false
     end
 
@@ -77,6 +78,7 @@ class User < ActiveRecord::Base
           'full_moderator', 
           'city_moderator' , 
           'location_moderator' , 
+          'dish_moderator', 
           'review_moderator' ].include?(self.role.name) ? true : false
     end
 
@@ -85,6 +87,7 @@ class User < ActiveRecord::Base
           'full_moderator', 
           'city_moderator' , 
           'location_moderator', 
+          'dish_moderator', 
           'review_moderator', 
           'general_user' ].include?(self.role.name) ? true : false
     end
