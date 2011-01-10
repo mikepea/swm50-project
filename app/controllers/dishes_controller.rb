@@ -51,8 +51,10 @@ class DishesController < ApplicationController
     logger.info "dishes#new params: " + params.inspect
     if params[:location_id]
         @location = Location.find(params[:location_id])
+        @dish.location = @location
     elsif current_location
         @location = current_location
+        @dish.location = current_location
     else
         redirect_to find_path
         return
