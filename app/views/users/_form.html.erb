@@ -39,7 +39,7 @@
     <%= f.label :password_confirmation, 'Confirm:' %><br />
     <%= f.password_field :password_confirmation, :class => "required", :minlength => "6", :equalto => "#user_password" %>
   </div>
-<% if current_user.is_admin? -%>
+<% if current_user and current_user.is_admin? -%>
   <% roles = Role.all %>
   <div class="field">
     <%= f.label :role, 'Role:' %><br />

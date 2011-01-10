@@ -1,6 +1,7 @@
 class City < ActiveRecord::Base
 
     has_many :locations
+    belongs_to :user
 
     validates :user_id, :presence => true, :numericality => { :only_integer => true }
     validates :name, :presence => true
